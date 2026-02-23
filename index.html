@@ -1,15 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>RoomieMatch | The Elite Campus Vibe</title>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --coral: #FF7F50;
+            --soft-blue: #A2D2FF;
+            --onyx: #050505;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            background-color: var(--onyx);
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            line-height: 1.4;
+        }
+
+        /* Ambient Glows */
+        .glow {
+            position: fixed;
+            width: 80vw; height: 80vw;
+            background: radial-gradient(circle, rgba(255, 127, 80, 0.08) 0%, transparent 70%);
+            top: -20vw; right: -20vw;
+            z-index: -1;
+        }
+
+        /* Mobile-Optimized Nav */
+        nav {
+            padding: 15px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800; }
+        .logo span { color: var(--coral); }
+
+        .insta-btn {
+            color: var(--soft-blue);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 1px solid var(--soft-blue);
+            padding: 6px 14px;
+            border-radius: 50px;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        header {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 100px 8% 40px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.8rem, 15vw, 7.5rem);
+            line-height: 0.9;
+            letter-spacing: -2px;
+            margin: 0;
+            background: linear-gradient(180deg, #fff 0%, #777 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle { color: #888; font-size: 0.95rem; margin-top: 20px; max-width: 450px; margin-inline: auto; }
+
+        /* Relatable Content Grid */
+        .content-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px 6% 80px;
+        }
+
+        .bento-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 25px;
+            text-align: left;
+        }
+
+        .bento-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 18px;
+            margin-bottom: 18px;
+        }
+
+        /* Popup - Mobile Friendly */
+        .popup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(15px);
+            display: flex; 
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            padding: 20px;
+        }
+
+        .popup-card {
+            background: #0d0e10;
+            border: 1px solid var(--border);
+            padding: 35px 25px;
+            border-radius: 35px;
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(255,127,80,0.1);
+        }
+
+        .popup-input {
+            width: 100%; padding: 18px; background: #1a1b1e; border: 1px solid #333;
+            border-radius: 14px; color: white; margin: 15px 0; font-size: 1rem; outline: none;
+        }
+
+        .popup-btn {
+            width: 100%; padding: 18px; background: white; color: black; border: none;
+            border-radius: 14px; font-weight: 800; font-size: 1rem; cursor: pointer;
+        }
+
+        /* Desktop Optimization */
+        @media (min-width: 1024px) {
+            .content-stack { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+            .bento-card { width: calc(33% - 20px); }
+            header { text-align: left; padding-left: 10%; }
+            .subtitle { margin-inline: 0; }
+        }
+    </style>
+</head>
 </head>
 <body>
-    <div class="bg-overlay"></div>
     <div class="glow"></div>
 
     <nav>
@@ -17,38 +158,37 @@
         <a href="https://www.instagram.com/roomie.matchh/" class="insta-btn" target="_blank">IG PROFILE</a>
     </nav>
 
-    <header class="reveal">
-        <p style="color: var(--coral); font-weight: 700; letter-spacing: 2px; font-size: 0.75rem;">EST. 2026</p>
-        <h1 class="hero-title">FIND YOUR<br>VIBE.</h1>
+    <header>
+        <p style="color: var(--coral); font-weight: 700; letter-spacing: 2px; font-size: 0.75rem;">BEYOND LIVING '26</p>
+        <h1>FIND YOUR<br>VIBE.</h1>
         <p class="subtitle">"Find your vibe before you share your space." The chic matching network for modern students.</p>
     </header>
 
     <section class="content-stack">
-        <div class="bento-card reveal">
-            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="Students">
+        <div class="bento-card">
+            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80" alt="Students">
             <h3>01. Compatibility</h3>
-            <p>Match based on sleep, study, and social vibes.</p>
+            <p style="color:#666; font-size:0.85rem;">Match based on sleep, study, and social vibes with clinical precision.</p>
         </div>
-        <div class="bento-card reveal" style="transition-delay: 0.2s;">
-            <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80" alt="Interior">
+        <div class="bento-card">
+            <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=600&q=80" alt="Interior">
             <h3>02. Verified</h3>
-            <p>Exclusive university domains. No strangers.</p>
+            <p style="color:#666; font-size:0.85rem;">Exclusive university domains. No strangers, just your future best friends.</p>
         </div>
     </section>
 
     <div id="statusPopup" class="popup-overlay" style="display: none;">
         <div class="popup-card">
-            <div class="popup-badge">CLAIM ACCESS</div>
-            <h2>VIBE CHECK. 💎</h2>
-            <p>Get <strong>Lifetime Premium</strong> + <strong>Verified Badge</strong> for free.</p>
+            <div style="background:var(--coral); display:inline-block; padding:4px 14px; border-radius:50px; font-size:0.65rem; font-weight:800; letter-spacing:1px;">CLAIM ACCESS</div>
+            <h2 style="font-family:'Syne'; font-size:2rem; margin:15px 0 8px;">VIBE CHECK. 💎</h2>
+            <p style="color:#777; font-size:0.85rem; line-height:1.5;">Join the elite waitlist. Get <strong>Lifetime Premium</strong> + <strong>Verified Badge</strong> for free.</p>
             <form id="claimForm">
                 <input type="email" placeholder="University Email" required class="popup-input">
                 <button type="submit" class="popup-submit">SECURE MY STATUS</button>
             </form>
-            <button onclick="closePopup()" class="popup-close">Maybe later, I'll pay full price</button>
+            <button onclick="closePopup()" style="background:none; border:none; color:#444; text-decoration:underline; font-size:0.8rem; margin-top:15px; cursor:pointer;">Maybe later, I'll pay full price</button>
         </div>
     </div>
 
     <script src="script.js"></script>
-</body>
-</html>
+</body> 
