@@ -4,267 +4,231 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Romi Match</title>
-  <meta name="description" content="Romi Match — a surreal social media project." />
+  <meta name="description" content="Romi Match — surreal social media project." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Ambient layers -->
-  <div class="bg">
-    <div class="grain"></div>
-    <div class="aurora"></div>
-    <div class="blobs" aria-hidden="true">
-      <span class="blob b1"></span>
-      <span class="blob b2"></span>
-      <span class="blob b3"></span>
-      <span class="blob b4"></span>
-    </div>
+  <!-- Cursor aura -->
+  <div class="cursorAura" aria-hidden="true"></div>
+
+  <!-- Background -->
+  <div class="stage" aria-hidden="true">
+    <div class="liquid"></div>
+    <div class="halo"></div>
+    <div class="noise"></div>
   </div>
 
-  <!-- Top nav -->
-  <header class="nav">
-    <a class="brand" href="#top" aria-label="Romi Match home">
-      <span class="logo">RM</span>
-      <span class="brandText">Romi Match</span>
+  <header class="topbar">
+    <a class="mark" href="#top" aria-label="Romi Match home">
+      <span class="sig">ROMI</span><span class="sig ghost">MATCH</span>
     </a>
 
-    <nav class="links">
-      <a href="#concept">Concept</a>
-      <a href="#features">Features</a>
-      <a href="#gallery">Gallery</a>
+    <nav class="nav">
+      <a href="#world">World</a>
+      <a href="#signals">Signals</a>
+      <a href="#oracle">Oracle</a>
       <a href="#contact">Contact</a>
     </nav>
 
-    <a class="cta" href="#contact">Join the vibe</a>
+    <a class="pill" href="#oracle">Try Oracle</a>
   </header>
 
-  <!-- Hero -->
   <main id="top" class="wrap">
     <section class="hero">
-      <div class="heroLeft">
-        <p class="pill">
-          <span class="dot"></span> surreal social media experiment
+      <div class="heroText">
+        <p class="kicker">
+          <span class="blink"></span>
+          surreal social media / identity remix / vibe matching
         </p>
 
-        <h1 class="title">
-          Romi Match<br/>
-          <span class="titleAccent">find your parallel</span>
+        <h1 class="headline">
+          Romi Match
+          <span class="subhead" data-glitch="find your unreal match">find your unreal match</span>
         </h1>
 
-        <p class="subtitle">
-          A dreamy space where identities bend, aesthetics collide, and connections feel like déjà vu.
-          Built to mesmerize — designed to match.
+        <p class="lede">
+          Romi Match is a social platform concept where profiles behave like art.
+          You don’t “follow” — you drift, collide, and match through signals: mood, aesthetic, and energy.
         </p>
 
-        <div class="heroActions">
-          <a class="btn primary" href="#concept">Explore the concept</a>
-          <a class="btn ghost" href="#gallery">See the look</a>
+        <div class="ctaRow">
+          <a class="btn primary" href="#world">Enter the world</a>
+          <button class="btn ghost" id="spawnPrompt" type="button">Generate a vibe</button>
         </div>
 
-        <div class="stats">
-          <div class="statCard">
-            <div class="statNum">∞</div>
-            <div class="statLabel">moods</div>
-          </div>
-          <div class="statCard">
-            <div class="statNum">3</div>
-            <div class="statLabel">layers of reality</div>
-          </div>
-          <div class="statCard">
-            <div class="statNum">1</div>
-            <div class="statLabel">Romi Match universe</div>
-          </div>
+        <div class="prompt" id="promptBox" role="status" aria-live="polite">
+          <span class="promptLabel">MATCH ORACLE</span>
+          <span class="promptText" id="promptText">Click “Generate a vibe” to get a surreal match prompt.</span>
         </div>
       </div>
 
-      <div class="heroRight">
-        <div class="glassFrame tilt" data-tilt>
-          <div class="frameTop">
-            <span class="spark"></span>
-            <span class="spark"></span>
-            <span class="spark"></span>
-          </div>
+      <div class="heroPanel" aria-label="Romi Match interface preview">
+        <div class="panelTop">
+          <span></span><span></span><span></span>
+          <div class="panelTitle">ROMI / SIGNAL FEED</div>
+        </div>
 
-          <div class="frameBody">
-            <div class="tag">LIVE FEED</div>
-            <div class="feed">
-              <div class="post">
-                <div class="avatar"></div>
-                <div class="lines">
-                  <span></span><span></span><span></span>
-                </div>
-              </div>
-              <div class="post">
-                <div class="avatar a2"></div>
-                <div class="lines">
-                  <span></span><span></span><span></span>
-                </div>
-              </div>
-              <div class="post">
-                <div class="avatar a3"></div>
-                <div class="lines">
-                  <span></span><span></span><span></span>
-                </div>
+        <div class="panelBody">
+          <div class="signal">
+            <div class="sigAvatar a1"></div>
+            <div class="sigBody">
+              <div class="sigLine l1"></div>
+              <div class="sigLine l2"></div>
+              <div class="sigTags">
+                <span>#lunar-soft</span><span>#chrome-dream</span><span>#warm-glitch</span>
               </div>
             </div>
+          </div>
 
-            <div class="pulseRow">
-              <div class="pulse"></div>
-              <div class="pulse"></div>
-              <div class="pulse"></div>
-              <div class="pulse"></div>
+          <div class="signal">
+            <div class="sigAvatar a2"></div>
+            <div class="sigBody">
+              <div class="sigLine l1"></div>
+              <div class="sigLine l2"></div>
+              <div class="sigTags">
+                <span>#velvet-noise</span><span>#dusk-neon</span><span>#slow-burn</span>
+              </div>
             </div>
-
-            <p class="micro">
-              “Match the vibe, not the profile.”
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Concept -->
-    <section id="concept" class="section reveal">
-      <div class="sectionHead">
-        <h2>Concept</h2>
-        <p>Romi Match is a surreal UI playground for a social media idea — blending identity, mood, and aesthetic signals.</p>
-      </div>
-
-      <div class="grid3">
-        <article class="card tilt" data-tilt>
-          <h3>Vibe-first matching</h3>
-          <p>Connections based on mood patterns, visuals, and micro-interactions — like meeting someone in a dream.</p>
-          <div class="chipRow">
-            <span class="chip">mood</span><span class="chip">aesthetic</span><span class="chip">energy</span>
-          </div>
-        </article>
-
-        <article class="card tilt" data-tilt>
-          <h3>Alternate identities</h3>
-          <p>Profiles can “shift” into variants — minimal, maximal, neon, soft — without losing the core self.</p>
-          <div class="chipRow">
-            <span class="chip">variants</span><span class="chip">layers</span><span class="chip">masks</span>
-          </div>
-        </article>
-
-        <article class="card tilt" data-tilt>
-          <h3>Surreal storytelling</h3>
-          <p>Each match generates a tiny narrative prompt — turning interaction into a living storyline.</p>
-          <div class="chipRow">
-            <span class="chip">prompts</span><span class="chip">micro-stories</span><span class="chip">loops</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- Features -->
-    <section id="features" class="section reveal">
-      <div class="sectionHead">
-        <h2>Features</h2>
-        <p>Swap these with your real project features — this layout is built to look premium on GitHub Pages.</p>
-      </div>
-
-      <div class="grid2">
-        <div class="feature card tilt" data-tilt>
-          <div class="icon">✦</div>
-          <div>
-            <h3>Ambient UI</h3>
-            <p>Animated aurora background, noise grain, and floating blobs create a “living” page.</p>
-          </div>
-        </div>
-
-        <div class="feature card tilt" data-tilt>
-          <div class="icon">⌁</div>
-          <div>
-            <h3>Glass panels</h3>
-            <p>Frosted-glass cards with subtle gradients and shadow depth for instant modern style.</p>
-          </div>
-        </div>
-
-        <div class="feature card tilt" data-tilt>
-          <div class="icon">⟡</div>
-          <div>
-            <h3>Micro motion</h3>
-            <p>Hover tilt + magnetic buttons + reveal animations. Small touches, huge vibe.</p>
-          </div>
-        </div>
-
-        <div class="feature card tilt" data-tilt>
-          <div class="icon">⧉</div>
-          <div>
-            <h3>Responsive</h3>
-            <p>Looks great on phones, tablets, and desktops — no framework required.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Gallery -->
-    <section id="gallery" class="section reveal">
-      <div class="sectionHead">
-        <h2>Gallery</h2>
-        <p>Replace these tiles with screenshots, moodboards, or UI concepts.</p>
-      </div>
-
-      <div class="masonry">
-        <div class="tile t1 tilt" data-tilt><span>neon dusk</span></div>
-        <div class="tile t2 tilt" data-tilt><span>soft glitch</span></div>
-        <div class="tile t3 tilt" data-tilt><span>liquid chrome</span></div>
-        <div class="tile t4 tilt" data-tilt><span>dream bloom</span></div>
-        <div class="tile t5 tilt" data-tilt><span>echo room</span></div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="section reveal">
-      <div class="sectionHead">
-        <h2>Contact</h2>
-        <p>Perfect place to link your GitHub, Instagram/TikTok, or a Google Form for sign-ups.</p>
-      </div>
-
-      <div class="contactGrid">
-        <form class="card form">
-          <label>
-            <span>Name</span>
-            <input type="text" placeholder="Your name" />
-          </label>
-          <label>
-            <span>Email</span>
-            <input type="email" placeholder="you@example.com" />
-          </label>
-          <label>
-            <span>Message</span>
-            <textarea rows="4" placeholder="Tell me what Romi Match should become..."></textarea>
-          </label>
-          <button type="button" class="btn primary wide">Send (demo)</button>
-          <p class="hint">This is frontend-only. For real messages, connect a form service (Formspree, Getform, etc.).</p>
-        </form>
-
-        <div class="card side">
-          <h3>Links</h3>
-          <div class="linkList">
-            <a href="#" class="linkItem">GitHub Repo <span>↗</span></a>
-            <a href="#" class="linkItem">Instagram <span>↗</span></a>
-            <a href="#" class="linkItem">TikTok <span>↗</span></a>
-            <a href="#" class="linkItem">Project Deck <span>↗</span></a>
           </div>
 
           <div class="divider"></div>
 
-          <p class="micro">
-            Tip: add a short demo video GIF here later for instant wow.
-          </p>
+          <div class="meter">
+            <div class="meterLabel">compatibility field</div>
+            <div class="meterBar"><i></i></div>
+          </div>
+
+          <div class="panelNote">
+            “Match the signal, not the résumé.”
+          </div>
         </div>
       </div>
     </section>
 
-    <footer class="footer">
-      <p>© <span id="year"></span> Romi Match — built on GitHub Pages.</p>
-      <a href="#top" class="toTop">Back to top ↑</a>
+    <section id="world" class="section">
+      <div class="sectionHead">
+        <h2>World</h2>
+        <p>Romi Match isn’t a feed. It’s a reality filter.</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <h3>Identity as a shifting mask</h3>
+          <p>Profiles can morph between modes — soft, sharp, surreal — without losing the human underneath.</p>
+          <div class="meta">mode / layer / remix</div>
+        </article>
+        <article class="card">
+          <h3>Signals, not stats</h3>
+          <p>Instead of follower counts, your presence is made of signals: mood trails, color gravity, micro-gestures.</p>
+          <div class="meta">mood / aura / gravity</div>
+        </article>
+        <article class="card">
+          <h3>Collisions become stories</h3>
+          <p>When you match, the platform generates a tiny narrative prompt — turning interaction into art.</p>
+          <div class="meta">prompt / loop / myth</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="signals" class="section">
+      <div class="sectionHead">
+        <h2>Signals</h2>
+        <p>Three inputs. Infinite outcomes.</p>
+      </div>
+
+      <div class="signals">
+        <div class="sigCard">
+          <div class="sigBig">01</div>
+          <h3>Mood</h3>
+          <p>Soft chaos, calm voltage, heartbreak neon — the emotional weather you carry.</p>
+        </div>
+        <div class="sigCard">
+          <div class="sigBig">02</div>
+          <h3>Aesthetic</h3>
+          <p>Textures, palettes, patterns — your visual language that speaks before words.</p>
+        </div>
+        <div class="sigCard">
+          <div class="sigBig">03</div>
+          <h3>Energy</h3>
+          <p>Tempo, intensity, silence — how you move through other people’s space.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="oracle" class="section">
+      <div class="sectionHead">
+        <h2>Match Oracle</h2>
+        <p>A surreal generator you can demo on the site so it doesn’t feel like a static poster.</p>
+      </div>
+
+      <div class="oracle">
+        <div class="oracleCard">
+          <div class="oracleTop">
+            <span>ROMI MATCH ORACLE</span>
+            <span class="oracleDot"></span>
+          </div>
+
+          <div class="oracleBody">
+            <label class="field">
+              <span>Your mood (1–3 words)</span>
+              <input id="mood" placeholder="e.g., velvet static" />
+            </label>
+
+            <label class="field">
+              <span>Your aesthetic</span>
+              <input id="aesthetic" placeholder="e.g., liquid chrome" />
+            </label>
+
+            <label class="field">
+              <span>Your energy</span>
+              <input id="energy" placeholder="e.g., slow burn" />
+            </label>
+
+            <button class="btn primary wide" id="oracleBtn" type="button">Generate match prompt</button>
+
+            <div class="oracleOut" id="oracleOut" role="status" aria-live="polite">
+              Fill the fields, then generate.
+            </div>
+          </div>
+        </div>
+
+        <div class="oracleSide">
+          <h3>How to use this</h3>
+          <ul>
+            <li>Record a screen video of the oracle generating prompts.</li>
+            <li>Replace the text with your project research + features.</li>
+            <li>Add screenshots later — the layout is ready for it.</li>
+          </ul>
+
+          <div class="tiny">
+            Hosting on GitHub Pages? You’re good. This is all static.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="sectionHead">
+        <h2>Contact</h2>
+        <p>Swap these links with your real ones.</p>
+      </div>
+
+      <div class="contact">
+        <a class="link" href="#">GitHub Repo <span>↗</span></a>
+        <a class="link" href="#">Instagram <span>↗</span></a>
+        <a class="link" href="#">TikTok <span>↗</span></a>
+        <a class="link" href="#">Project Doc <span>↗</span></a>
+      </div>
+    </section>
+
+    <footer class="foot">
+      <span>© <span id="year"></span> Romi Match</span>
+      <a href="#top">back to top ↑</a>
     </footer>
   </main>
 
