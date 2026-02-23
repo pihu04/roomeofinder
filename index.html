@@ -149,68 +149,26 @@
         }
     </style>
 </head>
-<!-- Delayed Popup -->
-<div class="popupOverlay" id="popupOverlay" aria-hidden="true">
-  <div class="popup">
-    <button class="popupClose" id="popupClose" aria-label="Close popup">✕</button>
+</head>
+<body>
 
-    <h3>roomiematch</h3>
-    <p>Find your unreal match — but for roommates. Ready to enter?</p>
+  <!-- your page content here -->
 
-    <div class="popupBtns">
-      <a class="btn primary" href="#oracle">Try Oracle</a>
-      <button class="btn ghost" id="popupLater" type="button">Maybe later</button>
+  <!-- Delayed Popup (put it near the END of body) -->
+  <div class="popupOverlay" id="popupOverlay" aria-hidden="true">
+    <div class="popup">
+      <button class="popupClose" id="popupClose" aria-label="Close popup">✕</button>
+
+      <h3>roomiematch</h3>
+      <p>Find your unreal match — but for roommates. Ready to enter?</p>
+
+      <div class="popupBtns">
+        <a class="btn primary" href="#oracle">Try Oracle</a>
+        <button class="btn ghost" id="popupLater" type="button">Maybe later</button>
+      </div>
     </div>
   </div>
-</div>
-    <body>
 
-    <div class="glow"></div>
-
-    <nav>
-        <div class="logo">ROOMIE<span>MATCH.</span></div>
-        <a href="https://www.instagram.com/roomie.matchh?igsh=MTg0aHljZDV6YWlzMQ==" class="insta-btn" target="_blank">IG PROFILE</a>
-    </nav>
-
-    <div id="statusPopup" class="popup-overlay">
-        <div class="popup-card">
-            <div style="background:var(--coral); display:inline-block; padding:4px 14px; border-radius:50px; font-size:0.65rem; font-weight:800; letter-spacing:1px;">CLAIM ACCESS</div>
-            <h2 style="font-family:'Syne'; font-size:2rem; margin:15px 0 8px;">VIBE CHECK. 💎</h2>
-            <p style="color:#777; font-size:0.85rem; line-height:1.5;">Join the elite waitlist. Get <strong>Lifetime Premium</strong> + <strong>Verified Badge</strong> for free.</p>
-            <form id="claimForm">
-                <input type="email" placeholder="University Email" required class="popup-input">
-                <button type="submit" class="popup-btn">SECURE MY STATUS</button>
-            </form>
-            <button onclick="closePopup()" style="background:none; border:none; color:#444; text-decoration:underline; font-size:0.8rem; margin-top:15px; cursor:pointer;">I'll pay full price later</button>
-        </div>
-    </div>
-
-    <header>
-        <p style="color: var(--coral); font-weight: 700; letter-spacing: 2px; font-size: 0.75rem;">BEYOND LIVING '26</p>
-        <h1>FIND YOUR<br>VIBE.</h1>
-        <p class="subtitle">The chic roommate matching network for modern students. Aesthetic-driven, safety-first, campus-verified.</p>
-    </header>
-
-    <section class="content-stack">
-        <div class="bento-card">
-            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=600&q=80" alt="Students Hanging Out">
-            <h3 style="font-family:'Syne'; margin:0;">01. Compatibility</h3>
-            <p style="color:#666; font-size:0.85rem;">Match based on sleep, study, and social vibes with clinical precision.</p>
-        </div>
-        <div class="bento-card">
-            <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=600&q=80" alt="Dorm Interior">
-            <h3 style="font-family:'Syne'; margin:0;">02. Verified</h3>
-            <p style="color:#666; font-size:0.85rem;">Exclusive university domains. No strangers, just your future best friends.</p>
-        </div>
-    </section>
-
-    <script>
-        function closePopup() { document.getElementById('statusPopup').style.display = 'none'; }
-        document.getElementById('claimForm').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert("Vibe Checked! Your status is reserved. Check your uni inbox soon!");
-            closePopup();
-        });
-    </script>
+  <script src="script.js"></script>
 </body>
 </html>
