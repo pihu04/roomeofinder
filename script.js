@@ -1,5 +1,35 @@
 // script.js
+// Delayed popup (8 seconds)
+const popupOverlay = document.getElementById("popupOverlay");
+const popupClose = document.getElementById("popupClose");
+const popupLater = document.getElementById("popupLater");
 
+function openPopup(){
+  popupOverlay.classList.add("show");
+  popupOverlay.setAttribute("aria-hidden", "false");
+}
+
+function closePopup(){
+  popupOverlay.classList.remove("show");
+  popupOverlay.setAttribute("aria-hidden", "true");
+}
+
+// Show after 8 seconds
+setTimeout(openPopup, 8000);
+
+// Close actions
+popupClose.addEventListener("click", closePopup);
+popupLater.addEventListener("click", closePopup);
+
+// Close if user clicks outside the popup box
+popupOverlay.addEventListener("click", (e) => {
+  if (e.target === popupOverlay) closePopup();
+});
+
+// Optional: ESC key closes it
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closePopup();
+});
 // 1. Wait for page to load, then wait 8 seconds
 window.addEventListener('load', () => {
     setTimeout(() => {
