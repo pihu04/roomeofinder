@@ -1,4 +1,66 @@
 /* styles.css */
+/* Popup */
+.popupOverlay{
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s ease, visibility .25s ease;
+  z-index: 999;
+}
+
+.popupOverlay.show{
+  opacity: 1;
+  visibility: visible;
+}
+
+.popup{
+  width: min(520px, 92vw);
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(10,10,16,.72);
+  box-shadow: 0 30px 100px rgba(0,0,0,.6);
+  padding: 18px;
+  position: relative;
+}
+
+.popup h3{
+  margin: 6px 0 8px;
+  font-family: var(--display);
+  font-size: 26px;
+}
+
+.popup p{
+  margin: 0 0 14px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.popupBtns{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.popupClose{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.06);
+  color: var(--fg);
+  cursor: pointer;
+}
+.popupClose:hover{
+  background: rgba(255,255,255,.10);
+}
 :root {
     --coral: #FF7F50;
     --soft-blue: #A2D2FF;
