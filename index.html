@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RoomieMatch | The Elite Campus Vibe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
     <div class="bg-overlay"></div>
     <div class="glow"></div>
@@ -15,16 +24,30 @@
 
     <section class="content-stack">
         <div class="bento-card reveal">
-            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="Students laughing">
+            <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="Students">
             <h3>01. Compatibility</h3>
             <p>Match based on sleep, study, and social vibes.</p>
         </div>
         <div class="bento-card reveal" style="transition-delay: 0.2s;">
-            <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80" alt="Aesthetic dorm">
+            <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80" alt="Interior">
             <h3>02. Verified</h3>
-            <p>Exclusive university domains. No outsiders.</p>
+            <p>Exclusive university domains. No strangers.</p>
         </div>
     </section>
 
+    <div id="statusPopup" class="popup-overlay" style="display: none;">
+        <div class="popup-card">
+            <div class="popup-badge">CLAIM ACCESS</div>
+            <h2>VIBE CHECK. 💎</h2>
+            <p>Get <strong>Lifetime Premium</strong> + <strong>Verified Badge</strong> for free.</p>
+            <form id="claimForm">
+                <input type="email" placeholder="University Email" required class="popup-input">
+                <button type="submit" class="popup-submit">SECURE MY STATUS</button>
+            </form>
+            <button onclick="closePopup()" class="popup-close">Maybe later, I'll pay full price</button>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
+</html>
