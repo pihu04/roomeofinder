@@ -3,121 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoomieMatch | Elite Campus Access</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
-    
+    <title>RoomieMatch | The Elite Campus Vibe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --coral: #FF7F50;
             --soft-blue: #A2D2FF;
             --onyx: #050505;
-            --border: rgba(255, 255, 255, 0.1);
+            --glass: rgba(255, 255, 255, 0.02);
+            --border: rgba(255, 255, 255, 0.07);
+        }
+
+        /* High-End Noise Texture Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 999;
         }
 
         body {
             background-color: var(--onyx);
-            color: white;
+            color: #ffffff;
             font-family: 'Plus Jakarta Sans', sans-serif;
             margin: 0;
             overflow-x: hidden;
         }
 
-        /* --- BOUGIE STYLES --- */
+        /* Custom Cursor */
+        #cursor-follower {
+            width: 40px; height: 40px;
+            border: 1px solid var(--soft-blue);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transition: transform 0.15s ease-out;
+            display: flex; align-items: center; justify-content: center;
+        }
+        #cursor-follower::after {
+            content: "";
+            width: 4px; height: 4px;
+            background: var(--coral);
+            border-radius: 50%;
+        }
+
+        /* Nav */
+        nav {
+            padding: 30px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            position: fixed; top: 0; width: 88%; z-index: 100;
+        }
+
+        .logo { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; letter-spacing: -2px; }
+        .logo span { color: var(--coral); }
+
+        /* Hero Section */
         header {
-            height: 80vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 0 10%;
-            background: radial-gradient(circle at top right, rgba(255,127,80,0.1), transparent);
+            padding: 0 8%;
         }
 
         h1 {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(4rem, 12vw, 8rem);
-            line-height: 0.9;
-            letter-spacing: -5px;
+            font-size: clamp(4rem, 15vw, 10rem);
+            line-height: 0.8;
+            letter-spacing: -6px;
             margin: 0;
+            background: linear-gradient(180deg, #fff 0%, #333 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        /* --- POP-UP GLASSMORPHISM STYLES --- */
-        .popup-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(12px); /* This creates the chic blurred look */
-            display: none; 
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
+        /* Bento Grid: Elite Style */
+        .bento {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(2, 400px);
+            gap: 20px;
+            padding: 0 6% 100px;
         }
 
-        .popup-content {
-            background: rgba(255, 255, 255, 0.03); /* Semi-transparent */
+        .card {
+            background: var(--glass);
             border: 1px solid var(--border);
-            padding: 50px;
             border-radius: 40px;
-            max-width: 400px;
-            text-align: center;
+            padding: 40px;
+            overflow: hidden;
             position: relative;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .claim-btn {
-            background: var(--coral);
-            color: white;
-            padding: 18px;
-            border: none;
-            border-radius: 15px;
-            font-weight: 700;
-            width: 100%;
-            margin-top: 20px;
-            cursor: pointer;
+        .card:hover { border-color: var(--soft-blue); transform: translateY(-10px); }
+
+        .card.main { grid-column: span 3; grid-row: span 2; background: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1200&q=80') center/cover; }
+        .card.accent { grid-column: span 3; background: var(--soft-blue); color: #000; }
+        .card.small { grid-column: span 3; }
+
+        /* Button: Magnetic Feel */
+        .btn-elite {
+            padding: 25px 60px;
+            background: white;
+            color: black;
+            border-radius: 100px;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 50px;
+            font-size: 1.1rem;
             transition: 0.3s;
         }
 
-        .claim-btn:hover { transform: scale(1.03); box-shadow: 0 0 20px var(--coral); }
+        .btn-elite:hover { background: var(--coral); color: white; transform: scale(1.05); }
 
-        .close-btn { position: absolute; top: 20px; right: 25px; cursor: pointer; opacity: 0.5; font-size: 1.5rem; }
     </style>
 </head>
 <body>
 
+    <div id="cursor-follower"></div>
+
+    <nav>
+        <div class="logo">ROOMIE<span>MATCH.</span></div>
+        <div style="font-size: 0.7rem; letter-spacing: 4px; color: var(--soft-blue);">PRE-LAUNCH ACCESS</div>
+    </nav>
+
     <header>
-        <h1>FIND YOUR<br><span style="color: var(--soft-blue);">VIBE.</span></h1>
-        <p style="color: #888; margin-top: 20px;">The elite roommate network for the modern campus.</p>
+        <p style="color: var(--coral); font-weight: 700; letter-spacing: 2px;">EST. 2026</p>
+        <h1 class="parallax" data-speed="2">BEYOND<br>LIVING.</h1>
+        <p style="max-width: 500px; color: #666; font-size: 1.2rem; margin-top: 30px;">The elite roommate network designed for the aesthetic-driven student.</p>
+        <div><a href="#join" class="btn-elite">RESERVE MY SPOT</a></div>
     </header>
 
-    <div id="popupOverlay" class="popup-overlay">
-        <div class="popup-content">
-            <span class="close-btn" onclick="closePopup()">&times;</span>
-            <h2 style="font-family: 'Syne';">CLAIM ELITE STATUS 💎</h2>
-            <p style="color: #aaa; font-size: 0.9rem;">Get <strong>Lifetime Premium</strong> and a <strong>Verified Badge</strong> for free by joining the waitlist today.</p>
-            <form id="popupForm">
-                <input type="email" placeholder="University Email" required style="width: 100%; padding: 15px; border-radius: 10px; border: 1px solid var(--border); background: rgba(255,255,255,0.05); color: white; box-sizing: border-box;">
-                <button type="submit" class="claim-btn">CLAIM NOW</button>
-            </form>
+    <div class="bento">
+        <div class="card main parallax" data-speed="1"></div>
+        <div class="card accent">
+            <h2 style="font-family: 'Syne'; font-size: 3rem; margin: 0;">01. THE ALGO.</h2>
+            <p>Matching your sleep, study, and style vibes with clinical precision.</p>
+        </div>
+        <div class="card small">
+            <h2 style="font-family: 'Syne'; color: var(--coral);">VERIFIED.</h2>
+            <p style="color: #666;">Exclusively for university domains. No outsiders.</p>
         </div>
     </div>
 
+    <footer id="join" style="padding: 150px 8%; text-align: center;">
+        <h2 style="font-family: 'Syne'; font-size: 5rem;">JOIN THE<br>WAITLIST.</h2>
+        <form style="margin-top: 50px;">
+            <input type="email" placeholder="UNIVERSITY EMAIL" style="background: transparent; border: none; border-bottom: 2px solid var(--border); padding: 20px; color: white; width: 400px; font-size: 1.5rem; outline: none; text-align: center;">
+            <br>
+            <button type="submit" class="btn-elite">I'M READY</button>
+        </form>
+    </footer>
+
     <script>
-        // Make the pop-up appear after 3 seconds
-        window.onload = function() {
-            setTimeout(function() {
-                document.getElementById('popupOverlay').style.display = 'flex';
-            }, 3000);
-        };
+        // Custom Cursor Follower
+        const follower = document.getElementById('cursor-follower');
+        document.addEventListener('mousemove', (e) => {
+            follower.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
+        });
 
-        function closePopup() {
-            document.getElementById('popupOverlay').style.display = 'none';
-        }
+        // Parallax Effect
+        window.addEventListener('scroll', () => {
+            const parallaxEls = document.querySelectorAll('.parallax');
+            parallaxEls.forEach(el => {
+                const speed = el.getAttribute('data-speed');
+                const yPos = -(window.scrollY * speed / 10);
+                el.style.transform = `translateY(${yPos}px)`;
+            });
+        });
 
-        document.getElementById('popupForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert("Success! Your Lifetime Premium access is reserved.");
-            closePopup();
+        // Smooth Button Interaction
+        document.querySelector('.btn-elite').addEventListener('mouseover', () => {
+            follower.style.width = '80px';
+            follower.style.height = '80px';
+            follower.style.borderColor = 'white';
+        });
+        document.querySelector('.btn-elite').addEventListener('mouseleave', () => {
+            follower.style.width = '40px';
+            follower.style.height = '40px';
+            follower.style.borderColor = 'var(--soft-blue)';
         });
     </script>
-
 </body>
 </html>
