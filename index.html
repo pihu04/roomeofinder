@@ -5,51 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RoomieMatch | Find Your Vibe</title>
     <style>
-        :root {
-            --coral: #FF7F50;
-            --soft-blue: #A2D2FF;
-            --dark-blue: #2B2D42;
-            --light-gray: #F8F9FA;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            color: var(--dark-blue);
-            background-color: var(--light-gray);
-            text-align: center;
-        }
-        header {
-            background-color: white;
-            padding: 40px 20px;
-            border-bottom: 3px solid var(--soft-blue);
-        }
-        .hero h1 {
-            font-size: 3rem;
-            color: var(--coral);
-            margin-bottom: 10px;
-        }
-        .cta-button {
-            background-color: var(--coral);
-            color: white;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 20px;
-            transition: transform 0.2s;
-        }
-        .cta-button:hover { transform: scale(1.05); }
-        .section { padding: 60px 20px; }
-        .features { background: white; display: flex; justify-content: space-around; flex-wrap: wrap; }
-        .feature-box { width: 300px; padding: 20px; }
-        footer { background: var(--dark-blue); color: white; padding: 40px; }
-        input[type="email"] {
-            padding: 12px;
-            width: 250px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
+        <style>
+    /* Import Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600&display=swap');
+
+    :root {
+        --coral: #FF7F50;
+        --soft-blue: #A2D2FF;
+        --dark-blue: #2B2D42;
+        --off-white: #FCFDFF;
+    }
+
+    body {
+        font-family: 'Open Sans', sans-serif;
+        margin: 0;
+        color: var(--dark-blue);
+        background: linear-gradient(135deg, var(--off-white) 0%, #f0f7ff 100%);
+        line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    header {
+        background: white;
+        padding: 80px 20px;
+        border-bottom: 5px solid var(--soft-blue);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        color: var(--coral);
+        margin: 0;
+    }
+
+    .cta-button {
+        background-color: var(--coral);
+        color: white;
+        padding: 18px 35px;
+        text-decoration: none;
+        border-radius: 8px; /* Slightly more modern than round */
+        font-weight: bold;
+        display: inline-block;
+        margin-top: 30px;
+        box-shadow: 0 4px 15px rgba(255, 127, 80, 0.3);
+        transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(255, 127, 80, 0.4);
+    }
+
+    .section { padding: 80px 20px; }
+
+    .feature-box {
+        background: white;
+        width: 300px;
+        padding: 30px;
+        margin: 15px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+</style>
     </style>
 </head>
 <body>
