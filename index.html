@@ -1,187 +1,273 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoomieMatch | The Elite Campus Vibe</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --coral: #FF7F50;
-            --soft-blue: #A2D2FF;
-            --deep-black: #0F1115;
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Romi Match</title>
+  <meta name="description" content="Romi Match — a surreal social media project." />
 
-        body {
-            background-color: var(--deep-black);
-            color: white;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            margin: 0;
-            overflow-x: hidden;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
 
-        /* Bougie Gradient Background */
-        .bg-glow {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 10% 20%, rgba(255, 127, 80, 0.15) 0%, transparent 40%),
-                        radial-gradient(circle at 90% 80%, rgba(162, 210, 255, 0.15) 0%, transparent 40%);
-            z-index: -1;
-        }
-
-        /* Chic Glass Navigation */
-        nav {
-            padding: 20px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--glass-border);
-            position: sticky; top: 0; z-index: 100;
-        }
-
-        .logo { font-family: 'Syne', sans-serif; font-size: 1.5rem; color: var(--coral); letter-spacing: -1px; }
-
-        /* Hero Section - The "Hook" */
-        header {
-            padding: 120px 10% 60px;
-            text-align: left;
-            max-width: 800px;
-        }
-
-        h1 {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            line-height: 0.9;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, #fff, var(--soft-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .tagline { font-size: 1.2rem; color: #888; margin-bottom: 40px; }
-
-        .btn-main {
-            background: var(--coral);
-            padding: 20px 40px;
-            border-radius: 100px;
-            color: white;
-            text-decoration: none;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(255, 127, 80, 0.4);
-            transition: 0.4s;
-            display: inline-block;
-        }
-
-        .btn-main:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(255, 127, 80, 0.6); }
-
-        /* Creative Image Grid */
-        .image-section {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            padding: 0 10%;
-        }
-
-        .chic-img {
-            height: 400px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 20px;
-            filter: grayscale(40%);
-            transition: 0.5s;
-            border: 1px solid var(--glass-border);
-        }
-        .chic-img:hover { filter: grayscale(0%); transform: scale(1.02); }
-
-        /* About Section */
-        .about {
-            padding: 100px 10%;
-            display: flex;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .glass-card {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            padding: 50px;
-            border-radius: 30px;
-            border: 1px solid var(--glass-border);
-            flex: 1;
-        }
-
-        /* Social Hub */
-        .socials {
-            text-align: center;
-            padding: 100px 0;
-            background: rgba(255,255,255,0.02);
-        }
-
-        .social-grid {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            font-size: 2rem;
-            margin-top: 30px;
-        }
-
-        .social-grid a { color: white; text-decoration: none; transition: 0.3s; opacity: 0.6; }
-        .social-grid a:hover { opacity: 1; color: var(--soft-blue); }
-
-    </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
-<div class="bg-glow"></div>
-
-<nav>
-    <div class="logo">ROOMIEMATCH.</div>
-    <div>
-        <a href="#about" style="color: white; text-decoration: none; margin-left: 20px;">About</a>
-        <a href="#social" style="color: white; text-decoration: none; margin-left: 20px;">Socials</a>
+  <!-- Ambient layers -->
+  <div class="bg">
+    <div class="grain"></div>
+    <div class="aurora"></div>
+    <div class="blobs" aria-hidden="true">
+      <span class="blob b1"></span>
+      <span class="blob b2"></span>
+      <span class="blob b3"></span>
+      <span class="blob b4"></span>
     </div>
-</nav>
+  </div>
 
-<header>
-    <h1>Find Your<br>Vibe.</h1>
-    <p class="tagline">The bougie way to find your campus aesthetic and the people to share it with.</p>
-    <a href="#signup" class="btn-main">Get Early Access</a>
-</header>
+  <!-- Top nav -->
+  <header class="nav">
+    <a class="brand" href="#top" aria-label="Romi Match home">
+      <span class="logo">RM</span>
+      <span class="brandText">Romi Match</span>
+    </a>
 
-<div class="image-section">
-    <div class="chic-img" style="background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80');"></div>
-    <div class="chic-img" style="background-image: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80'); margin-top: 40px;"></div>
-    <div class="chic-img" style="background-image: url('https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80');"></div>
-</div>
+    <nav class="links">
+      <a href="#concept">Concept</a>
+      <a href="#features">Features</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
 
-<section class="about" id="about">
-    <div class="glass-card">
-        <h2 style="font-family: 'Syne'; font-size: 3rem;">Not your average housing site.</h2>
-        <p style="font-size: 1.2rem; line-height: 2;">We prioritize <strong>compatibility first, housing second</strong>. RoomieMatch is designed for the elite student who values their peace, their vibe, and their sleep schedule.</p>
-    </div>
-</section>
+    <a class="cta" href="#contact">Join the vibe</a>
+  </header>
 
-<section class="socials" id="social">
-    <h2 style="font-family: 'Syne';">Connect with the Community</h2>
-    <div class="social-grid">
-        <a href="#">IG</a>
-        <a href="#">TK</a>
-        <a href="#">LI</a>
-    </div>
-</section>
+  <!-- Hero -->
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div class="heroLeft">
+        <p class="pill">
+          <span class="dot"></span> surreal social media experiment
+        </p>
 
-<footer style="padding: 100px 10%; text-align: center; background: var(--deep-black);" id="signup">
-    <h2 style="font-family: 'Syne'; font-size: 3rem;">Join the Pre-Launch.</h2>
-    <form style="margin-top: 40px;">
-        <input type="email" placeholder="University Email" style="background: transparent; border: none; border-bottom: 2px solid var(--glass-border); padding: 15px; color: white; width: 300px; font-size: 1.2rem; outline: none;">
-        <button type="submit" class="btn-main" style="border:none; cursor:pointer; margin-left: 20px;">I'm In</button>
-    </form>
-</footer>
+        <h1 class="title">
+          Romi Match<br/>
+          <span class="titleAccent">find your parallel</span>
+        </h1>
 
+        <p class="subtitle">
+          A dreamy space where identities bend, aesthetics collide, and connections feel like déjà vu.
+          Built to mesmerize — designed to match.
+        </p>
+
+        <div class="heroActions">
+          <a class="btn primary" href="#concept">Explore the concept</a>
+          <a class="btn ghost" href="#gallery">See the look</a>
+        </div>
+
+        <div class="stats">
+          <div class="statCard">
+            <div class="statNum">∞</div>
+            <div class="statLabel">moods</div>
+          </div>
+          <div class="statCard">
+            <div class="statNum">3</div>
+            <div class="statLabel">layers of reality</div>
+          </div>
+          <div class="statCard">
+            <div class="statNum">1</div>
+            <div class="statLabel">Romi Match universe</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="heroRight">
+        <div class="glassFrame tilt" data-tilt>
+          <div class="frameTop">
+            <span class="spark"></span>
+            <span class="spark"></span>
+            <span class="spark"></span>
+          </div>
+
+          <div class="frameBody">
+            <div class="tag">LIVE FEED</div>
+            <div class="feed">
+              <div class="post">
+                <div class="avatar"></div>
+                <div class="lines">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+              <div class="post">
+                <div class="avatar a2"></div>
+                <div class="lines">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+              <div class="post">
+                <div class="avatar a3"></div>
+                <div class="lines">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pulseRow">
+              <div class="pulse"></div>
+              <div class="pulse"></div>
+              <div class="pulse"></div>
+              <div class="pulse"></div>
+            </div>
+
+            <p class="micro">
+              “Match the vibe, not the profile.”
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Concept -->
+    <section id="concept" class="section reveal">
+      <div class="sectionHead">
+        <h2>Concept</h2>
+        <p>Romi Match is a surreal UI playground for a social media idea — blending identity, mood, and aesthetic signals.</p>
+      </div>
+
+      <div class="grid3">
+        <article class="card tilt" data-tilt>
+          <h3>Vibe-first matching</h3>
+          <p>Connections based on mood patterns, visuals, and micro-interactions — like meeting someone in a dream.</p>
+          <div class="chipRow">
+            <span class="chip">mood</span><span class="chip">aesthetic</span><span class="chip">energy</span>
+          </div>
+        </article>
+
+        <article class="card tilt" data-tilt>
+          <h3>Alternate identities</h3>
+          <p>Profiles can “shift” into variants — minimal, maximal, neon, soft — without losing the core self.</p>
+          <div class="chipRow">
+            <span class="chip">variants</span><span class="chip">layers</span><span class="chip">masks</span>
+          </div>
+        </article>
+
+        <article class="card tilt" data-tilt>
+          <h3>Surreal storytelling</h3>
+          <p>Each match generates a tiny narrative prompt — turning interaction into a living storyline.</p>
+          <div class="chipRow">
+            <span class="chip">prompts</span><span class="chip">micro-stories</span><span class="chip">loops</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="section reveal">
+      <div class="sectionHead">
+        <h2>Features</h2>
+        <p>Swap these with your real project features — this layout is built to look premium on GitHub Pages.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="feature card tilt" data-tilt>
+          <div class="icon">✦</div>
+          <div>
+            <h3>Ambient UI</h3>
+            <p>Animated aurora background, noise grain, and floating blobs create a “living” page.</p>
+          </div>
+        </div>
+
+        <div class="feature card tilt" data-tilt>
+          <div class="icon">⌁</div>
+          <div>
+            <h3>Glass panels</h3>
+            <p>Frosted-glass cards with subtle gradients and shadow depth for instant modern style.</p>
+          </div>
+        </div>
+
+        <div class="feature card tilt" data-tilt>
+          <div class="icon">⟡</div>
+          <div>
+            <h3>Micro motion</h3>
+            <p>Hover tilt + magnetic buttons + reveal animations. Small touches, huge vibe.</p>
+          </div>
+        </div>
+
+        <div class="feature card tilt" data-tilt>
+          <div class="icon">⧉</div>
+          <div>
+            <h3>Responsive</h3>
+            <p>Looks great on phones, tablets, and desktops — no framework required.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="section reveal">
+      <div class="sectionHead">
+        <h2>Gallery</h2>
+        <p>Replace these tiles with screenshots, moodboards, or UI concepts.</p>
+      </div>
+
+      <div class="masonry">
+        <div class="tile t1 tilt" data-tilt><span>neon dusk</span></div>
+        <div class="tile t2 tilt" data-tilt><span>soft glitch</span></div>
+        <div class="tile t3 tilt" data-tilt><span>liquid chrome</span></div>
+        <div class="tile t4 tilt" data-tilt><span>dream bloom</span></div>
+        <div class="tile t5 tilt" data-tilt><span>echo room</span></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section reveal">
+      <div class="sectionHead">
+        <h2>Contact</h2>
+        <p>Perfect place to link your GitHub, Instagram/TikTok, or a Google Form for sign-ups.</p>
+      </div>
+
+      <div class="contactGrid">
+        <form class="card form">
+          <label>
+            <span>Name</span>
+            <input type="text" placeholder="Your name" />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" placeholder="you@example.com" />
+          </label>
+          <label>
+            <span>Message</span>
+            <textarea rows="4" placeholder="Tell me what Romi Match should become..."></textarea>
+          </label>
+          <button type="button" class="btn primary wide">Send (demo)</button>
+          <p class="hint">This is frontend-only. For real messages, connect a form service (Formspree, Getform, etc.).</p>
+        </form>
+
+        <div class="card side">
+          <h3>Links</h3>
+          <div class="linkList">
+            <a href="#" class="linkItem">GitHub Repo <span>↗</span></a>
+            <a href="#" class="linkItem">Instagram <span>↗</span></a>
+            <a href="#" class="linkItem">TikTok <span>↗</span></a>
+            <a href="#" class="linkItem">Project Deck <span>↗</span></a>
+          </div>
+
+          <div class="divider"></div>
+
+          <p class="micro">
+            Tip: add a short demo video GIF here later for instant wow.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> Romi Match — built on GitHub Pages.</p>
+      <a href="#top" class="toTop">Back to top ↑</a>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
 </body>
 </html>
