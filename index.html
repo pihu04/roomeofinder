@@ -48,70 +48,72 @@
         .logo { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800; }
         .logo span { color: var(--coral); }
 
+        /* The Instagram Link - Fixed & Bold */
         .insta-btn {
             color: var(--soft-blue);
             text-decoration: none;
             font-size: 0.75rem;
             font-weight: 700;
-            border: 1px solid var(--soft-blue);
-            padding: 6px 14px;
+            border: 2px solid var(--soft-blue); /* Thicker for touch */
+            padding: 8px 16px;
             border-radius: 50px;
-            transition: 0.3s;
+            background: rgba(162, 210, 255, 0.1);
         }
 
-        /* Hero Section */
+        /* Hero Section - Balanced for Mobile & Desktop */
         header {
             min-height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 100px 8% 40px;
+            padding: 120px 8% 40px;
             text-align: center;
         }
 
         h1 {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(2.8rem, 15vw, 7.5rem);
+            font-size: clamp(3rem, 15vw, 8rem);
             line-height: 0.9;
-            letter-spacing: -2px;
+            letter-spacing: -3px;
             margin: 0;
             background: linear-gradient(180deg, #fff 0%, #777 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .subtitle { color: #888; font-size: 0.95rem; margin-top: 20px; max-width: 450px; margin-inline: auto; }
+        .subtitle { color: #888; font-size: 0.95rem; margin-top: 25px; max-width: 450px; margin-inline: auto; }
 
-        /* Relatable Content Grid */
+        /* Relatable Bento Cards */
         .content-stack {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 25px;
             padding: 20px 6% 80px;
         }
 
         .bento-card {
             background: var(--glass);
             border: 1px solid var(--border);
-            border-radius: 28px;
+            border-radius: 30px;
             padding: 25px;
             text-align: left;
+            transition: 0.3s;
         }
 
         .bento-card img {
             width: 100%;
-            height: 220px;
+            height: 240px;
             object-fit: cover;
-            border-radius: 18px;
-            margin-bottom: 18px;
+            border-radius: 20px;
+            margin-bottom: 20px;
         }
 
-        /* Popup - Mobile Friendly */
+        /* Pop-up Structure */
         .popup-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.96);
-            backdrop-filter: blur(15px);
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
             display: flex; 
             justify-content: center;
             align-items: center;
@@ -122,25 +124,20 @@
         .popup-card {
             background: #0d0e10;
             border: 1px solid var(--border);
-            padding: 35px 25px;
+            padding: 40px 30px;
             border-radius: 35px;
             width: 100%;
-            max-width: 380px;
+            max-width: 400px;
             text-align: center;
-            box-shadow: 0 0 50px rgba(255,127,80,0.1);
-        }
-
-        .popup-input {
-            width: 100%; padding: 18px; background: #1a1b1e; border: 1px solid #333;
-            border-radius: 14px; color: white; margin: 15px 0; font-size: 1rem; outline: none;
         }
 
         .popup-btn {
             width: 100%; padding: 18px; background: white; color: black; border: none;
-            border-radius: 14px; font-weight: 800; font-size: 1rem; cursor: pointer;
+            border-radius: 15px; font-weight: 800; font-size: 1rem; cursor: pointer;
+            margin-top: 15px;
         }
 
-        /* Desktop Optimization */
+        /* Desktop Views */
         @media (min-width: 1024px) {
             .content-stack { flex-direction: row; flex-wrap: wrap; justify-content: center; }
             .bento-card { width: calc(33% - 20px); }
@@ -155,26 +152,26 @@
 
     <nav>
         <div class="logo">ROOMIE<span>MATCH.</span></div>
-        <a href="https://www.instagram.com/roomie.matchh?igsh=MTg0aHljZDV6YWlzMQ==" class="insta-btn" target="_blank">IG PROFILE</a>
+        <a href="https://www.instagram.com/roomie.matchh/" class="insta-btn" target="_blank">IG PROFILE</a>
     </nav>
 
     <div id="statusPopup" class="popup-overlay">
         <div class="popup-card">
-            <div style="background:var(--coral); display:inline-block; padding:4px 14px; border-radius:50px; font-size:0.65rem; font-weight:800; letter-spacing:1px;">CLAIM ACCESS</div>
-            <h2 style="font-family:'Syne'; font-size:2rem; margin:15px 0 8px;">VIBE CHECK. 💎</h2>
-            <p style="color:#777; font-size:0.85rem; line-height:1.5;">Join the elite waitlist. Get <strong>Lifetime Premium</strong> + <strong>Verified Badge</strong> for free.</p>
+            <div style="background:var(--coral); display:inline-block; padding:5px 15px; border-radius:50px; font-size:0.65rem; font-weight:800; letter-spacing:1.5px;">CLAIM ACCESS</div>
+            <h2 style="font-family:'Syne'; font-size:2rem; margin:20px 0 10px;">VIBE CHECK. 💎</h2>
+            <p style="color:#777; font-size:0.9rem; line-height:1.5;">Join the waitlist. Get <strong>Lifetime Premium</strong> + <strong>Verified Badge</strong> for free.</p>
             <form id="claimForm">
-                <input type="email" placeholder="University Email" required class="popup-input">
+                <input type="email" placeholder="University Email" required style="width:100%; padding:18px; background:#1a1b1e; border:1px solid #333; border-radius:15px; color:white; margin:15px 0; font-size:1rem; outline:none;">
                 <button type="submit" class="popup-btn">SECURE MY STATUS</button>
             </form>
-            <button onclick="closePopup()" style="background:none; border:none; color:#444; text-decoration:underline; font-size:0.8rem; margin-top:15px; cursor:pointer;">I'll pay full price later</button>
+            <button onclick="closePopup()" style="background:none; border:none; color:#444; text-decoration:underline; font-size:0.8rem; margin-top:20px; cursor:pointer;">I'll browse first</button>
         </div>
     </div>
 
     <header>
-        <p style="color: var(--coral); font-weight: 700; letter-spacing: 2px; font-size: 0.75rem;">BEYOND LIVING '26</p>
+        <p style="color: var(--coral); font-weight: 700; letter-spacing: 2px; font-size: 0.8rem;">BEYOND LIVING '26</p>
         <h1>FIND YOUR<br>VIBE.</h1>
-        <p class="subtitle">The chic roommate matching network for modern students. Aesthetic-driven, safety-first, campus-verified.</p>
+        <p class="subtitle">The chic roommate matching network for modern students. Find your tribe before you share your space.</p>
     </header>
 
     <section class="content-stack">
