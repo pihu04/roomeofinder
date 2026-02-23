@@ -1,11 +1,15 @@
-// Function to close the bougie pop-up
+// Function to show the pop-up after a delay
+window.onload = function() {
+    setTimeout(function() {
+        // This targets your elite-popup-overlay
+        const popup = document.getElementById('statusPopup');
+        if (popup) {
+            popup.style.display = 'flex';
+        }
+    }, 8000); // 8000 milliseconds = 8 seconds
+};
+
+// Function to close the pop-up
 function closePopup() {
     document.getElementById('statusPopup').style.display = 'none';
 }
-
-// Form logic for Early Access
-document.getElementById('claimForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    alert("Vibe Checked! You're on the list.");
-    closePopup();
-});
