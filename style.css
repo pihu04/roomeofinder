@@ -128,3 +128,70 @@ header {
         font-size: 2.8rem;
     }
 }
+/* --- BIG OVAL STATS SECTION --- */
+
+.stats-container {
+    padding: 100px 6%;
+    display: flex;
+    justify-content: center;
+    background: transparent;
+}
+
+.stats-grid {
+    display: grid;
+    /* This creates the 2-column layout for the left/right split */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 40px;
+    width: 100%;
+    max-width: 1100px;
+}
+
+.stat-pill {
+    background: rgba(255, 255, 255, 0.03); /* Sheer background */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    
+    /* The 500px radius creates the perfect oval shape */
+    padding: 70px 40px; 
+    border-radius: 500px; 
+    
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stat-pill:hover {
+    border-color: var(--coral);
+    transform: translateY(-10px);
+    background: rgba(255, 127, 80, 0.05);
+}
+
+.stat-number {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 800;
+    margin: 0;
+    color: #ffffff; /* White font as requested */
+}
+
+.stat-label {
+    color: var(--coral); /* Orange/Coral font for the description */
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 12px;
+}
+
+/* MOBILE FIX: Stacks the ovals so they remain readable on phones */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    .stat-pill {
+        padding: 50px 30px;
+    }
+}
