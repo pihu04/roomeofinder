@@ -167,101 +167,38 @@
     </nav>
 
     <header>
-        <div class="coming-soon-pill">Coming Soon</div>
+        <div class="coming-soon-pill" style="position: relative; z-index: 20;">Coming Soon</div>
         <p style="color: var(--coral); font-weight: 700; letter-spacing: 2px; font-size: 0.75rem; margin-bottom: 10px;">EST. 2026</p>
         <h1 class="hero-title">FIND YOUR<br>VIBE.</h1>
         <p style="color: #ccc; margin-top: 30px; max-width: 450px;">"Find your vibe before you share your space." The chic matching network for modern students.</p>
         
-        <a href="quiz.html" class="ui-pill" style="margin-top: 30px; text-decoration: none;">Take Quiz →</a>
+        <button onclick="toggleQuiz()" class="ui-pill" style="margin-top: 30px; cursor: pointer; border: none;">Take Quiz →</button>
     </header>
-<div id="quizModal" class="quiz-overlay">
-    <div class="quiz-card-glass">
-        <div id="quiz-content"> 
-             </div>
-    </div>
-</div>
-            <p class="step-label">STEP 1 / 4</p>
-            <h2 class="quiz-question">What is your typical sleep schedule?</h2>
-            <div class="quiz-options">
-                <button class="quiz-btn-sheer" onclick="nextQuizStep(2)">Early Bird 🌅</button>
-                <button class="quiz-btn-sheer" onclick="nextQuizStep(2)">Night Owl 🦉</button>
-                <button class="quiz-btn-sheer" onclick="nextQuizStep(2)">Flexible ⏳</button>
+
+    <section class="mega-center-container">
+        <div class="mega-pill">
+            <span class="mega-num">94%</span>
+            <span class="mega-label">MATCH SUCCESS RATE</span>
+        </div>
+    </section>
+
+    <div id="quizModal" class="quiz-overlay">
+        <div class="quiz-card-glass">
+            <button class="close-quiz" onclick="toggleQuiz()">✕</button>
+            <div id="quiz-content" style="transition: all 0.4s ease;">
+                <div class="quiz-progress-dots">
+                    <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                </div>
+                <p class="step-label">STEP 1 / 4</p>
+                <h2 class="quiz-question">What is your typical sleep schedule?</h2>
+                <div class="quiz-options">
+                    <button class="quiz-btn-sheer" onclick="nextQuizStep(2)">Early Bird 🌅</button>
+                    <button class="quiz-btn-sheer" onclick="nextQuizStep(2)">Night Owl 🦉</button>
+                    <button class="quiz-btn-sheer" onclick="nextQuizStep(2)">Flexible ⏳</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-         <footer>
-        <h2 style="font-family: 'Syne'; font-size: 1.8rem; margin-bottom: 10px;">ROOMIEMATCH.</h2>
-        <p class="footer-desc">
-            The first lifestyle-driven roommate matching platform built exclusively for students.
-        </p>
 
-        <div class="footer-grid">
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="#">Home</a>
-                <a href="#">How It Works</a>
-                <a href="#">Take Quiz</a>
-                <a href="#">Pricing</a>
-            </div>
-
-            <div class="footer-section">
-                <h4>Legal & Support</h4>
-                <a href="#">About Us</a>
-                <a href="#">Student Stories</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Support & FAQ</a>
-                <a href="#">Contact</a>
-            </div>
-        </div>
-
-        <div class="social-icons">
-            <a href="https://www.instagram.com/roomie.matchh/" class="icon-link" target="_blank">
-                <i data-lucide="instagram"></i>
-                <span>Instagram</span>
-            </a>
-            <a href="#" class="icon-link">
-                <i data-lucide="music-2"></i>
-                <span>TikTok</span>
-            </a>
-            <a href="#" class="icon-link">
-                <i data-lucide="message-circle"></i>
-                <span>WhatsApp Community</span>
-            </a>
-        </div>
-
-        <div class="bottom-bar">
-            <p>© 2026 ROOMIEMATCH. ALL RIGHTS RESERVED.</p>
-            <p style="margin-top: 10px; font-weight: 700; color: white;">Made with ❤️ for students</p>
-        </div>
-
-    </footer>
-
-    <div id="statusPopup" class="popup-overlay">
-        <div class="popup-card">
-            <h2 style="color: var(--coral); font-family: 'Syne'; margin-top: 0;">ELITE STATUS 💎</h2>
-            <p style="color: #888; font-size: 0.85rem;">Join the pre-launch waitlist for <strong>Lifetime Premium</strong> access.</p>
-            <form id="claimForm">
-                <input type="email" placeholder="University Email" required style="width:100%; padding:18px; background:#1a1b1e; border:1px solid #333; border-radius:14px; color:white; margin:15px 0; outline:none;">
-                <button type="submit" style="width:100%; padding:18px; background:white; border:none; border-radius:14px; font-weight:800; cursor:pointer;">SECURE MY STATUS</button>
-            </form>
-            <button onclick="closePopup()" style="background:none; border:none; color:#444; text-decoration:underline; cursor:pointer; margin-top:15px;">Maybe later</button>
-        </div>
-    </div>
-
-    <script>
-        lucide.createIcons();
-
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const popup = document.getElementById('statusPopup');
-                if (popup) popup.style.display = 'flex';
-            }, 60000); 
-        });
-
-        function closePopup() {
-            document.getElementById('statusPopup').style.display = 'none';
-        }
-   
-</body>
+    </body>
 </html>
