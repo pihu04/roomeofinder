@@ -124,6 +124,8 @@ header {
     opacity: 0.8;
     margin-top: 5px;
 }
+
+
 /* --- MASSIVE GLASS STATS --- */
 
 .solution-container {
@@ -176,7 +178,68 @@ header {
     letter-spacing: 2px;
     margin-top: 10px;
 }
+/* 1. Reset Header Layout to show Coming Soon */
+header {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 8%;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
 
+/* 2. Mega Centerpiece (The 94% Pill) */
+.mega-center-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mega-pill {
+    background: rgba(0, 0, 0, 0.45) !important;
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1000px;
+    padding: 60px 120px;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.mega-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 110px; /* Huge font size */
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+}
+
+/* 3. Sheer Bubble Text (The Horror Stories) */
+.problem-section-glass {
+    padding: 100px 0;
+}
+
+.sheer-bubble {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 30px;
+}
+
+.bubble-h3 {
+    font-family: 'Syne';
+    font-weight: 800;
+    color: white;
+}
+
+.highlight {
+    color: var(--coral);
+}
 /* Responsive Fix: Scales down so 100px doesn't break mobile screens */
 @media (max-width: 1024px) {
     .stat-num-bold { font-size: 70px; }
