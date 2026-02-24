@@ -68,64 +68,64 @@ header {
     background: rgba(255, 255, 255, 0.15) !important;
     border-color: white !important;
 }
-/* --- VERTICAL GLASS PILLS --- */
+/* --- GLASS PILL GRID STYLE --- */
 
-.stats-container-vertical {
-    padding: 60px 8%;
+.stats-glass-container {
+    padding: 100px 8%;
     display: flex;
-    justify-content: flex-start; /* Aligns the whole stack to the left */
+    justify-content: center;
 }
 
-.stats-vertical-stack {
-    display: flex;
-    flex-direction: column; /* Aligns pills vertically */
-    gap: 20px; /* Consistent spacing between pills */
-    max-width: 500px;
+.stats-glass-grid {
+    display: grid;
+    /* Forces 2 columns: Column 1 (Left) and Column 2 (Right) */
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 30px;
+    width: 100%;
+    max-width: 1100px;
 }
 
-.ui-pill-stat {
-    /* STYLE REQUIREMENTS */
-    background: rgba(0, 0, 0, 0.45) !important; /* Translucent dark background */
-    backdrop-filter: blur(12px); /* Glassmorphism effect */
-    border: 1px solid rgba(255, 255, 255, 0.25); /* Thin light border */
-    border-radius: 500px; /* Fully pill-shaped */
+.stat-glass-pill {
+    /* GLASSMORPHISM REQUIREMENTS */
+    background: rgba(0, 0, 0, 0.45) !important; /* Sheer dark background */
+    backdrop-filter: blur(15px); /* Frosted glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.25); /* Thin white border */
+    border-radius: 500px; /* Perfect oval/pill shape */
     
-    padding: 15px 35px;
+    padding: 40px 30px;
+    text-align: center;
     display: flex;
-    align-items: center; /* Keeps number and label on same line */
-    gap: 20px;
-    transition: 0.4s ease;
+    flex-direction: column;
+    justify-content: center;
+    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.ui-pill-stat:hover {
-    transform: translateX(10px); /* Slight slide-out effect on hover */
-    border-color: rgba(255, 255, 255, 0.5);
+.stat-glass-pill:hover {
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.05) !important;
 }
 
-.stat-num {
+.stat-num-bold {
     font-family: 'Syne', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 800; /* Bold and bigger */
-    color: #ffffff;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #ffffff !important; /* Forced White Number */
+    margin: 0;
 }
 
-.stat-txt {
+.stat-label-caps {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 0.75rem;
     font-weight: 700;
-    text-transform: uppercase; /* Smaller uppercase */
+    text-transform: uppercase; /* Uppercase sans-serif label */
     letter-spacing: 1.5px;
-    color: rgba(255, 255, 255, 0.9);
+    color: #ffffff !important; /* Forced White Label */
+    opacity: 0.8;
+    margin-top: 5px;
 }
 
-/* Dimming the background for readability */
-.bg-overlay {
-    background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.92)) !important;
-}
-
-/* Mobile Stack */
+/* Responsive Fix: Stacks for mobile readability */
 @media (max-width: 768px) {
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
+    .stats-glass-grid { grid-template-columns: 1fr; }
 }
