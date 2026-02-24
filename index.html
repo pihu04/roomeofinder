@@ -10,8 +10,6 @@
             --coral: #FF7F50;
             --soft-blue: #A2D2FF;
             --onyx: #050505;
-            --glass: rgba(255, 255, 255, 0.05);
-            --border: rgba(255, 255, 255, 0.1);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -25,167 +23,30 @@
             line-height: 1.4;
         }
 
-        /* Ambient Glows */
-        .glow {
+        /* 1. ELEGANT SHEER BACKGROUND */
+        .bg-overlay {
             position: fixed;
-            width: 80vw; height: 80vw;
-            background: radial-gradient(circle, rgba(255, 127, 80, 0.08) 0%, transparent 70%);
-            top: -20vw; right: -20vw;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* Black sheer gradient over high-quality room image */
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.9)), 
+                        url('https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
             z-index: -1;
+            transform: scale(1.05);
         }
 
-        /* Mobile-Optimized Nav */
+        /* 2. CHIC NAVIGATION */
         nav {
-            padding: 15px 6%;
+            padding: 25px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            backdrop-filter: blur(20px);
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            border-bottom: 1px solid var(--border);
         }
 
-        .logo { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800; }
+        .logo { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; }
         .logo span { color: var(--coral); }
 
         .insta-btn {
-            color: var(--soft-blue);
-            text-decoration: none;
-            font-size: 0.75rem;
-            font-weight: 700;
-            border: 1px solid var(--soft-blue);
-            padding: 6px 14px;
-            border-radius: 50px;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
-        header {
-            min-height: 85vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 100px 8% 40px;
-            text-align: center;
-        }
-
-        h1 {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(2.8rem, 15vw, 7.5rem);
-            line-height: 0.9;
-            letter-spacing: -2px;
-            margin: 0;
-            background: linear-gradient(180deg, #fff 0%, #777 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .subtitle { color: #888; font-size: 0.95rem; margin-top: 20px; max-width: 450px; margin-inline: auto; }
-
-        /* Relatable Content Grid */
-        .content-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 20px 6% 80px;
-        }
-
-        .bento-card {
-            background: var(--glass);
-            border: 1px solid var(--border);
-            border-radius: 28px;
-            padding: 25px;
-            text-align: left;
-        }
-
-        .bento-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 18px;
-            margin-bottom: 18px;
-        }
-
-        /* Popup - Mobile Friendly */
-        .popup-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.96);
-            backdrop-filter: blur(15px);
-            display: flex; 
-            justify-content: center;
-            align-items: center;
-            z-index: 99999;
-            padding: 20px;
-        }
-
-        .popup-card {
-            background: #0d0e10;
-            border: 1px solid var(--border);
-            padding: 35px 25px;
-            border-radius: 35px;
-            width: 100%;
-            max-width: 380px;
-            text-align: center;
-            box-shadow: 0 0 50px rgba(255,127,80,0.1);
-        }
-
-        .popup-input {
-            width: 100%; padding: 18px; background: #1a1b1e; border: 1px solid #333;
-            border-radius: 14px; color: white; margin: 15px 0; font-size: 1rem; outline: none;
-        }
-
-        .popup-btn {
-            width: 100%; padding: 18px; background: white; color: black; border: none;
-            border-radius: 14px; font-weight: 800; font-size: 1rem; cursor: pointer;
-        }
-
-        /* Desktop Optimization */
-        @media (min-width: 1024px) {
-            .content-stack { flex-direction: row; flex-wrap: wrap; justify-content: center; }
-            .bento-card { width: calc(33% - 20px); }
-            header { text-align: left; padding-left: 10%; }
-            .subtitle { margin-inline: 0; }
-        }
-    </style>
-</head>
-</head>
-<body>
-    <div class="bg-overlay"></div>
-
-    <nav style="padding: 25px 6%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05);">
-        <div class="logo" style="font-family:'Syne'; font-weight: 800; font-size: 1.2rem;">ROOMIE<span>MATCH.</span></div>
-        <a href="https://www.instagram.com/roomie.matchh/" class="insta-btn" style="color: var(--soft-blue); text-decoration: none; font-size: 0.7rem; border: 1px solid var(--soft-blue); padding: 8px 18px; border-radius: 50px;">IG PROFILE</a>
-    </nav>
-
-    <header style="height: 80vh; display: flex; flex-direction: column; justify-content: center; padding: 0 8%;">
-        <p style="color: var(--coral); font-weight: 700; letter-spacing: 2px; font-size: 0.7rem; margin-bottom: 15px;">CAMPUS ELITE EST. 2026</p>
-        <h1 class="hero-title">FIND YOUR<br>VIBE.</h1>
-        <p style="color: #888; margin-top: 25px; max-width: 450px;">The chic roommate matching network for modern students.</p>
-    </header>
-
-    <section class="content-stack">
-        <div class="bento-card">
-            <h2>01. Match</h2>
-            <p style="color:#666;">Lifestyle-based compatibility quiz for your best campus life.</p>
-        </div>
-        <div class="bento-card">
-            <h2>02. Trust</h2>
-            <p style="color:#666;">Exclusive university domains. Safe, secure, and verified.</p>
-        </div>
-    </section>
-
-    <div id="statusPopup" class="popup-overlay">
-        <div class="bento-card" style="max-width: 400px; text-align: center;">
-            <h2 style="font-size: 1.8rem;">CLAIM ELITE STATUS 💎</h2>
-            <p style="font-size: 0.9rem; color: #888;">Get <strong>Lifetime Premium</strong> for free.</p>
-            <form id="claimForm">
-                <input type="email" placeholder="Uni Email" required style="width:100%; padding:15px; background:#111; border:1px solid #333; border-radius:12px; color:white; margin:15px 0;">
-                <button type="submit" style="width:100%; padding:15px; background:white; border:none; border-radius:12px; font-weight:800; cursor:pointer;">SECURE MY STATUS</button>
-            </form>
-            <button onclick="closePopup()" style="background:none; border:none; color:#444; text-decoration:underline; cursor:pointer; margin-top:15px;">Maybe later</button>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
+            color: var(--
