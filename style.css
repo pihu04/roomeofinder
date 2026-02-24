@@ -124,88 +124,66 @@ header {
     opacity: 0.8;
     margin-top: 5px;
 }
-/* --- THE SOLUTION SECTION STYLING --- */
+/* --- MASSIVE GLASS STATS --- */
 
 .solution-container {
-    padding: 100px 8%;
+    min-height: 100vh; /* Ensures it takes up the full page height */
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: center; /* Centers vertically */
+    align-items: center;     /* Centers horizontally */
+    padding: 100px 8%;
     text-align: center;
 }
 
-/* THE SOLUTION BADGE */
-.solution-badge {
-    background: rgba(0, 255, 255, 0.1); /* Minty sheer from your screenshot */
-    color: #5eead4;
-    padding: 8px 24px;
-    border-radius: 100px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    margin-bottom: 50px;
-    letter-spacing: 1px;
-}
-
-/* 2x2 GLASS GRID */
 .stats-glass-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 40px;
     width: 100%;
-    max-width: 1100px;
-    margin-bottom: 70px;
+    max-width: 1200px;
+    margin-bottom: 80px;
 }
 
 .stat-glass-pill {
     background: rgba(0, 0, 0, 0.45) !important;
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 500px;
-    padding: 40px 30px;
+    border-radius: 500px; /* Perfect oval pill */
+    padding: 80px 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition: transform 0.4s ease;
 }
 
 .stat-num-bold {
     font-family: 'Syne', sans-serif;
-    font-size: 3rem;
+    font-size: 100px; /* YOUR REQUESTED SIZE */
     font-weight: 800;
     color: #ffffff;
-    margin-bottom: 5px;
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -4px;
 }
 
 .stat-label-caps {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.7);
-    text-transform: capitalize;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 10px;
 }
 
-/* HEADLINE & DESCRIPTION */
-.brand-h2 {
-    font-family: 'Syne', sans-serif;
-    color: #ffffff;
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin-bottom: 25px;
+/* Responsive Fix: Scales down so 100px doesn't break mobile screens */
+@media (max-width: 1024px) {
+    .stat-num-bold { font-size: 70px; }
 }
 
-.brand-h2 .highlight {
-    color: var(--coral); /* Your brand orange */
-}
-
-.brand-p {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.25rem;
-    max-width: 800px;
-    line-height: 1.6;
-}
-
-/* MOBILE FIX */
 @media (max-width: 768px) {
     .stats-glass-grid { grid-template-columns: 1fr; }
-    .brand-h2 { font-size: 2.2rem; }
+    .stat-num-bold { font-size: 60px; }
+    .stat-glass-pill { padding: 50px 20px; }
 }
