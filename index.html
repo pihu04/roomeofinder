@@ -1,164 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RoomieMatch | The Elite Campus Vibe</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        :root {
-            --coral: #FF7F50;
-            --soft-blue: #A2D2FF;
-            --onyx: #050505;
-        }
-
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-        body {
-            background-color: var(--onyx);
-            color: #ffffff;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            margin: 0;
-            overflow-x: hidden;
-            line-height: 1.4;
-        }
-
-        .bg-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.9)), 
-                        url('https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=1500&q=80');
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
-        }
-
-        /* STICKY NAVIGATION */
-        nav {
-            padding: 20px 6%;
-            display: flex;
-            justify-content: center;
-            position: fixed;
-            top: 0; 
-            width: 100%; 
-            z-index: 1000;
-            backdrop-filter: blur(15px);
-            background: rgba(5, 5, 5, 0.5);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .logo { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
-        .logo span { color: var(--coral); }
-
-        .coming-soon-pill {
-            display: inline-block;
-            padding: 6px 16px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 100px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        header {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 0 8%;
-            text-align: center;
-        }
-
-        .hero-title {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(3rem, 15vw, 8.5rem);
-            line-height: 0.85;
-            letter-spacing: -3px;
-            margin: 0;
-            opacity: 0;
-            transform: translateY(40px);
-            animation: fadeInUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-
-        footer {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(30px);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 80px 8% 40px;
-            text-align: center;
-            color: white; /* Updated to white */
-        }
-
-        .footer-desc { color: #ccc; max-width: 600px; margin: 20px auto; font-size: 0.9rem; }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .footer-section h4 {
-            font-family: 'Syne';
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            color: var(--coral);
-        }
-
-        .footer-section a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            font-size: 0.85rem;
-            margin-bottom: 10px;
-            opacity: 0.7;
-            transition: 0.3s;
-        }
-
-        .footer-section a:hover { opacity: 1; color: var(--coral); }
-
-        .social-icons { display: flex; justify-content: center; gap: 25px; margin: 40px 0; }
-        .icon-link {
-            color: white;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            opacity: 0.7;
-        }
-        .icon-link:hover { opacity: 1; color: var(--coral); }
-
-        .bottom-bar {
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            font-size: 0.7rem;
-            letter-spacing: 1px;
-            color: #aaa;
-        }
-
-        /* POPUP */
-        .popup-overlay {
-            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95);
-            display: none; justify-content: center; align-items: center; z-index: 10000; padding: 20px;
-        }
-        .popup-card {
-            background: #0d0e10; border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px; border-radius: 40px; width: 100%; max-width: 400px; text-align: center;
-        }
-    </style>
-</head>
 <body>
     <div class="bg-overlay"></div>
 
@@ -168,82 +7,68 @@
 
     <header>
         <div class="coming-soon-pill">Coming Soon</div>
-        <p style="color: var(--coral); font-weight: 700; letter-spacing: 2px; font-size: 0.75rem; margin-bottom: 10px;">EST. 2026</p>
+        <p class="est-text">EST. 2026</p>
         <h1 class="hero-title">FIND YOUR<br>VIBE.</h1>
-        <p style="color: #ccc; margin-top: 30px; max-width: 450px;">"Find your vibe before you share your space." The chic matching network for modern students.</p>
+        <p class="hero-subtitle">"Find your vibe before you share your space." The chic matching network for modern students.</p>
+        
+        <div class="hero-btns">
+            <button onclick="toggleQuiz()" class="ui-pill">Take Quiz →</button>
+            <a href="#how-it-works" class="ui-pill secondary">How It Works</a>
+        </div>
     </header>
 
-    <footer>
-        <h2 style="font-family: 'Syne'; font-size: 1.8rem; margin-bottom: 10px;">ROOMIEMATCH.</h2>
-        <p class="footer-desc">
-            The first lifestyle-driven roommate matching platform built exclusively for students.
-        </p>
+    <section class="mega-center-container">
+        <div class="mega-pill">
+            <span class="mega-num">94%</span>
+            <span class="mega-label">MATCH SUCCESS RATE</span>
+        </div>
+    </section>
 
-        <div class="footer-grid">
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="#">Home</a>
-                <a href="#">How It Works</a>
-                <a href="#">Take Quiz</a>
-                <a href="#">Pricing</a>
+    <section class="problem-section-glass">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="bubble-badge">😱 THE PROBLEM</span>
+                <h2 class="mega-title-white">Roommate Horror Stories Are <span class="highlight">Too Real</span></h2>
             </div>
 
-            <div class="footer-section">
-                <h4>Legal & Support</h4>
-                <a href="#">About Us</a>
-                <a href="#">Student Stories</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Support & FAQ</a>
-                <a href="#">Contact</a>
+            <div class="stories-grid">
+                <div class="sheer-bubble">
+                    <div class="bubble-emoji">🔊</div>
+                    <h3 class="bubble-h3">The Party Animal</h3>
+                    <p class="bubble-p">"My roommate had friends over every night until 3am. I failed midterms from sleep deprivation."</p>
+                    <p class="bubble-author">— Anonymous, UCLA</p>
+                </div>
+                <div class="sheer-bubble">
+                    <div class="bubble-emoji">🍕</div>
+                    <h3 class="bubble-h3">The Food Thief</h3>
+                    <p class="bubble-p">"They ate ALL my groceries every single week. I had to hide snacks in my backpack."</p>
+                    <p class="bubble-author">— Anonymous, NYU</p>
+                </div>
+                <div class="sheer-bubble">
+                    <div class="bubble-emoji">🧦</div>
+                    <h3 class="bubble-h3">The Mess Maker</h3>
+                    <p class="bubble-p">"Dishes piled up for weeks. I found moldy pizza under their bed. The smell was unbearable."</p>
+                    <p class="bubble-author">— Anonymous, USC</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <div class="social-icons">
-            <a href="https://www.instagram.com/roomie.matchh/" class="icon-link" target="_blank">
-                <i data-lucide="instagram"></i>
-                <span>Instagram</span>
-            </a>
-            <a href="#" class="icon-link">
-                <i data-lucide="music-2"></i>
-                <span>TikTok</span>
-            </a>
-            <a href="#" class="icon-link">
-                <i data-lucide="message-circle"></i>
-                <span>WhatsApp Community</span>
-            </a>
-        </div>
-
-        <div class="bottom-bar">
-            <p>© 2026 ROOMIEMATCH. ALL RIGHTS RESERVED.</p>
-            <p style="margin-top: 10px; font-weight: 700; color: white;">Made with ❤️ for students</p>
-        </div>
-    </footer>
-
-    <div id="statusPopup" class="popup-overlay">
-        <div class="popup-card">
-            <h2 style="color: var(--coral); font-family: 'Syne'; margin-top: 0;">ELITE STATUS 💎</h2>
-            <p style="color: #888; font-size: 0.85rem;">Join the pre-launch waitlist for <strong>Lifetime Premium</strong> access.</p>
-            <form id="claimForm">
-                <input type="email" placeholder="University Email" required style="width:100%; padding:18px; background:#1a1b1e; border:1px solid #333; border-radius:14px; color:white; margin:15px 0; outline:none;">
-                <button type="submit" style="width:100%; padding:18px; background:white; border:none; border-radius:14px; font-weight:800; cursor:pointer;">SECURE MY STATUS</button>
-            </form>
-            <button onclick="closePopup()" style="background:none; border:none; color:#444; text-decoration:underline; cursor:pointer; margin-top:15px;">Maybe later</button>
+    <div id="quizModal" class="quiz-overlay">
+        <div class="quiz-card-glass">
+            <button class="close-quiz" onclick="toggleQuiz()">✕</button>
+            <div id="quiz-content">
+                <div class="quiz-progress-dots">
+                    <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                </div>
+                <p class="step-label">STEP 1 / 4</p>
+                <h2 class="quiz-question">What is your typical sleep schedule?</h2>
+                <div class="quiz-options">
+                    <button class="quiz-btn-sheer" onclick="nextQuizStep(2)">Early Bird 🌅</button>
+                    <button class="quiz-btn-sheer" onclick="nextQuizStep(2)">Night Owl 🦉</button>
+                    <button class="quiz-btn-sheer" onclick="nextQuizStep(2)">Flexible ⏳</button>
+                </div>
+            </div>
         </div>
     </div>
-
-    <script>
-        lucide.createIcons();
-
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const popup = document.getElementById('statusPopup');
-                if (popup) popup.style.display = 'flex';
-            }, 60000); 
-        });
-
-        function closePopup() {
-            document.getElementById('statusPopup').style.display = 'none';
-        }
-    </script>
 </body>
-</html>
