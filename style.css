@@ -74,11 +74,12 @@ header {
     padding: 80px 6%;
     display: flex;
     justify-content: center;
+    background: transparent;
 }
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2x2 Grid Layout */
+    grid-template-columns: repeat(2, 1fr); /* Maintains 2-column layout */
     gap: 30px;
     width: 100%;
     max-width: 1100px;
@@ -86,34 +87,34 @@ header {
 
 .stat-pill {
     /* SHEER BACKGROUND EFFECT */
-    background: rgba(255, 255, 255, 0.05); /* Very light white fill */
-    backdrop-filter: blur(15px); /* Blurs what is behind the box */
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+    background: rgba(255, 255, 255, 0.05); /* Semi-transparent white */
+    backdrop-filter: blur(15px); /* Frosted glass effect */
+    border: 1px solid rgba(255, 255, 255, 0.1);
     
-    /* BIG OVAL SHAPE */
+    /* OVAL SHAPE */
     padding: 60px 40px;
     border-radius: 500px; /* High value creates the pill/oval look */
     
     text-align: center;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: all 0.4s ease;
 }
 
 .stat-pill:hover {
     background: rgba(255, 255, 255, 0.1);
     transform: translateY(-5px);
-    border-color: white;
+    border-color: #ffffff;
 }
 
 .stat-number {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 800;
     margin: 0;
-    color: #ffffff; /* FORCED WHITE TEXT */
+    color: #ffffff; /* Forced white text */
 }
 
 .stat-label {
-    color: rgba(255, 255, 255, 0.6); /* Muted white for the label */
+    color: rgba(255, 255, 255, 0.7); /* Muted white for label */
     font-size: 0.85rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -121,13 +122,9 @@ header {
     margin-top: 10px;
 }
 
-/* MOBILE FIX: Stacks columns on smaller screens */
+/* Mobile Stack */
 @media (max-width: 768px) {
     .stats-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    .stat-pill {
-        padding: 40px 20px;
     }
 }
