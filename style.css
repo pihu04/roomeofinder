@@ -1,316 +1,74 @@
 :root {
-    --coral: #FF7F50;
+    --coral: #FF8C00; /* Your brand orange */
     --onyx: #050505;
 }
 
-body {
-    background-color: var(--onyx);
-    color: #ffffff;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    margin: 0;
-    overflow-x: hidden;
+/* BACKGROUND & HERO */
+.bg-overlay {
+    position: fixed; inset: 0; z-index: -1;
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.95)), url('your-image.jpg') center/cover;
 }
 
-/* 1. HEADER LAYOUT FIX */
 header {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding-top: 60px; 
-    text-align: center;
+    height: 100vh; display: flex; flex-direction: column; 
+    justify-content: center; align-items: center; text-align: center;
 }
 
-/* 2. BUTTON SPACING (Placed right after subtitle) */
-.hero-btns {
-    display: flex;
-    gap: 40px; /* Provides the distance you requested */
-    margin-top: 35px;
-    justify-content: center;
-    animation: fadeInUp 1s ease 1.2s forwards;
-    opacity: 0;
+.hero-title {
+    font-family: 'Syne'; font-size: clamp(3rem, 12vw, 8rem);
+    line-height: 0.9; color: white; margin: 20px 0;
 }
 
-/* 3. UI PILL BUTTONS (Matches Coming Soon Badge) */
-.ui-pill {
-    display: inline-block;
-    padding: 8px 22px; 
-    border: 1px solid var(--coral);
-    border-radius: 100px; /* Precise oval shape */
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    text-decoration: none !important;
-    background: var(--coral);
-    color: white !important; /* Fixes the blue font issue */
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* 4. SECONDARY BUTTON (Sheer/Glass Look) */
-.ui-pill.secondary {
-    background: rgba(255, 255, 255, 0.05) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    color: white !important;
-}
-
-/* 5. HOVER EFFECTS */
-.ui-pill:hover {
-    transform: translateY(-2px);
-    background-color: white !important;
-    color: var(--coral) !important;
-    border-color: white !important;
-}
-
-.ui-pill.secondary:hover {
-    background: rgba(255, 255, 255, 0.15) !important;
-    border-color: white !important;
-}
-/* --- GLASS PILL GRID STYLE --- */
-
-.stats-glass-container {
-    padding: 100px 8%;
-    display: flex;
-    justify-content: center;
-}
-
-.stats-glass-grid {
-    display: grid;
-    /* Forces 2 columns: Column 1 (Left) and Column 2 (Right) */
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 30px;
-    width: 100%;
-    max-width: 1100px;
-}
-
-.stat-glass-pill {
-    /* GLASSMORPHISM REQUIREMENTS */
-    background: rgba(0, 0, 0, 0.45) !important; /* Sheer dark background */
-    backdrop-filter: blur(15px); /* Frosted glass effect */
-    border: 1px solid rgba(255, 255, 255, 0.25); /* Thin white border */
-    border-radius: 500px; /* Perfect oval/pill shape */
-    
-    padding: 40px 30px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.stat-glass-pill:hover {
-    transform: translateY(-5px);
-    border-color: rgba(255, 255, 255, 0.6);
-    background: rgba(255, 255, 255, 0.05) !important;
-}
-
-.stat-num-bold {
-    font-family: 'Syne', sans-serif;
-    font-size: 3rem;
-    font-weight: 800;
-    color: #ffffff !important; /* Forced White Number */
-    margin: 0;
-}
-
-.stat-label-caps {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase; /* Uppercase sans-serif label */
-    letter-spacing: 1.5px;
-    color: #ffffff !important; /* Forced White Label */
-    opacity: 0.8;
-    margin-top: 5px;
-}
-
-
-/* --- MASSIVE GLASS STATS --- */
-
-.solution-container {
-    min-height: 100vh; /* Ensures it takes up the full page height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centers vertically */
-    align-items: center;     /* Centers horizontally */
-    padding: 100px 8%;
-    text-align: center;
-}
-
-.stats-glass-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 40px;
-    width: 100%;
-    max-width: 1200px;
-    margin-bottom: 80px;
-}
-
-.stat-glass-pill {
-    background: rgba(0, 0, 0, 0.45) !important;
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 500px; /* Perfect oval pill */
-    padding: 80px 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    transition: transform 0.4s ease;
-}
-
-.stat-num-bold {
-    font-family: 'Syne', sans-serif;
-    font-size: 100px; /* YOUR REQUESTED SIZE */
-    font-weight: 800;
-    color: #ffffff;
-    margin: 0;
-    line-height: 1;
-    letter-spacing: -4px;
-}
-
-.stat-label-caps {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 0.6);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-top: 10px;
-}
-/* 1. Reset Header Layout to show Coming Soon */
-header {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0 8%;
-    text-align: center;
-    position: relative;
-    z-index: 10;
-}
-
-/* 2. Mega Centerpiece (The 94% Pill) */
+/* MASSIVE CENTERPIECE (100px) */
 .mega-center-container {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 100vh; display: flex; justify-content: center; align-items: center;
 }
 
 .mega-pill {
     background: rgba(0, 0, 0, 0.45) !important;
     backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 1000px;
-    padding: 60px 120px;
-    display: flex;
-    align-items: center;
-    gap: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1000px; padding: 60px 100px;
+    display: flex; align-items: center; gap: 40px;
 }
 
 .mega-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 110px; /* Huge font size */
-    font-weight: 800;
-    color: #ffffff;
-    line-height: 1;
+    font-family: 'Syne'; font-size: 100px; /* REQUESTED SIZE */
+    font-weight: 800; color: white; line-height: 1;
 }
 
-/* 3. Sheer Bubble Text (The Horror Stories) */
-.problem-section-glass {
-    padding: 100px 0;
+.mega-label {
+    font-family: 'Plus Jakarta Sans'; font-size: 1.2rem;
+    font-weight: 700; color: rgba(255,255,255,0.7); letter-spacing: 2px;
+}
+
+/* SHEER BUBBLE STORIES */
+.stories-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;
 }
 
 .sheer-bubble {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.03) !important;
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 30px;
+    border-radius: 40px; padding: 40px; text-align: left;
 }
 
-.bubble-h3 {
-    font-family: 'Syne';
-    font-weight: 800;
-    color: white;
-}
+.bubble-h3 { font-family: 'Syne'; color: white; font-size: 1.5rem; }
+.highlight { color: var(--coral); }
 
-.highlight {
-    color: var(--coral);
-}
-/* --- QUIZ POP-UP STYLING --- */
-
+/* QUIZ MODAL & BUTTONS */
 .quiz-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(10px);
-    display: none; /* Hidden by default */
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
+    position: fixed; inset: 0; background: rgba(0,0,0,0.9);
+    display: none; justify-content: center; align-items: center; z-index: 1000;
 }
-
-.quiz-card-glass {
-    background: rgba(255, 255, 255, 0.03) !important;
-    backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 60px 40px;
-    border-radius: 40px;
-    width: 90%;
-    max-width: 500px;
-    text-align: center;
-    position: relative;
-}
-
-.close-quiz {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    opacity: 0.5;
-}
-
-.step-label { color: var(--coral); font-weight: 800; letter-spacing: 2px; font-size: 0.7rem; margin-bottom: 10px; }
-
-.quiz-question { font-family: 'Syne'; font-size: 2rem; margin-bottom: 30px; }
 
 .quiz-btn-sheer {
-    display: block;
-    width: 100%;
+    width: 100%; padding: 18px; margin-bottom: 12px;
     background: rgba(255, 255, 255, 0.05) !important;
     border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    color: white !important; /* Forced white text */
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 100px;
-    font-family: 'Plus Jakarta Sans';
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s ease;
+    color: white !important; border-radius: 100px;
+    font-weight: 700; cursor: pointer; transition: 0.3s;
 }
 
-.quiz-btn-sheer:hover {
-    background: white !important;
-    color: black !important;
-}
-
-.quiz-progress-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; }
-.dot { width: 8px; height: 8px; background: rgba(255,255,255,0.2); border-radius: 50%; }
-.dot.active { background: var(--coral); box-shadow: 0 0 10px var(--coral); }
-/* Responsive Fix: Scales down so 100px doesn't break mobile screens */
-@media (max-width: 1024px) {
-    .stat-num-bold { font-size: 70px; }
-}
-
-@media (max-width: 768px) {
-    .stats-glass-grid { grid-template-columns: 1fr; }
-    .stat-num-bold { font-size: 60px; }
-    .stat-glass-pill { padding: 50px 20px; }
-}
+.quiz-btn-sheer:hover { background: white !important; color: black !important; }
