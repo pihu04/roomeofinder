@@ -74,50 +74,42 @@ header {
     padding: 80px 6%;
     display: flex;
     justify-content: center;
-    background: transparent;
 }
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Maintains 2-column layout */
+    grid-template-columns: repeat(2, 1fr); 
     gap: 30px;
     width: 100%;
     max-width: 1100px;
 }
 
 .stat-pill {
-    /* SHEER BACKGROUND EFFECT */
-    background: rgba(255, 255, 255, 0.05); /* Semi-transparent white */
-    backdrop-filter: blur(15px); /* Frosted glass effect */
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02); /* Sheer background */
+    backdrop-filter: blur(20px);
     
-    /* OVAL SHAPE */
+    /* THIN PILL OUTLINE */
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    border-radius: 500px; /* Force oval shape */
+    
     padding: 60px 40px;
-    border-radius: 500px; /* High value creates the pill/oval look */
-    
     text-align: center;
-    transition: all 0.4s ease;
-}
-
-.stat-pill:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateY(-5px);
-    border-color: #ffffff;
 }
 
 .stat-number {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: 3.5rem;
     font-weight: 800;
+    color: #ffffff; /* Bold white */
     margin: 0;
-    color: #ffffff; /* Forced white text */
 }
 
 .stat-label {
-    color: rgba(255, 255, 255, 0.7); /* Muted white for label */
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    color: #ffffff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase; /* Bold uppercase sans-serif */
     letter-spacing: 2px;
     margin-top: 10px;
 }
