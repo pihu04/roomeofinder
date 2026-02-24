@@ -71,127 +71,63 @@ header {
 /* --- STATISTICS SECTION --- */
 
 .stats-container {
-    padding: 100px 8%; /* Spacing from the section above and below */
+    padding: 80px 6%;
     display: flex;
     justify-content: center;
-    background: transparent; /* Maintains your sheer background */
 }
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2x2 Layout as seen in screenshot */
-    gap: 25px;
-    width: 100%;
-    max-width: 1000px;
-}
-
-.stat-card {
-    background: rgba(255, 255, 255, 0.02); /* Very subtle sheer fill */
-    border: 1px solid rgba(255, 255, 255, 0.08); /* Soft white border */
-    backdrop-filter: blur(20px);
-    padding: 50px 30px;
-    border-radius: 40px; /* High-end rounded corners */
-    text-align: center;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.stat-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--coral); /* Highlights orange on hover */
-}
-
-.stat-number {
-    font-family: 'Syne', sans-serif;
-    font-size: 3.5rem;
-    font-weight: 800;
-    margin: 0;
-    /* This creates the high-contrast gradient from your screenshot */
-    background: linear-gradient(135deg, #fff 0%, #888 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.stat-label {
-    color: #666; /* Muted text for the description */
-    font-size: 0.95rem;
-    margin-top: 15px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-}
-
-/* MOBILE VIEW: Stacks cards in one column for small screens */
-@media (max-width: 768px) {
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-    .stat-number {
-        font-size: 2.8rem;
-    }
-}
-/* --- BIG OVAL STATS SECTION --- */
-
-.stats-container {
-    padding: 100px 6%;
-    display: flex;
-    justify-content: center;
-    background: transparent;
-}
-
-.stats-grid {
-    display: grid;
-    /* This creates the 2-column layout for the left/right split */
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 40px;
+    grid-template-columns: repeat(2, 1fr); /* 2x2 Grid Layout */
+    gap: 30px;
     width: 100%;
     max-width: 1100px;
 }
 
 .stat-pill {
-    background: rgba(255, 255, 255, 0.03); /* Sheer background */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
+    /* SHEER BACKGROUND EFFECT */
+    background: rgba(255, 255, 255, 0.05); /* Very light white fill */
+    backdrop-filter: blur(15px); /* Blurs what is behind the box */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
     
-    /* The 500px radius creates the perfect oval shape */
-    padding: 70px 40px; 
-    border-radius: 500px; 
+    /* BIG OVAL SHAPE */
+    padding: 60px 40px;
+    border-radius: 500px; /* High value creates the pill/oval look */
     
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .stat-pill:hover {
-    border-color: var(--coral);
-    transform: translateY(-10px);
-    background: rgba(255, 127, 80, 0.05);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+    border-color: white;
 }
 
 .stat-number {
     font-family: 'Syne', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 800;
     margin: 0;
-    color: #ffffff; /* White font as requested */
+    color: #ffffff; /* FORCED WHITE TEXT */
 }
 
 .stat-label {
-    color: var(--coral); /* Orange/Coral font for the description */
-    font-size: 0.8rem;
-    font-weight: 700;
+    color: rgba(255, 255, 255, 0.6); /* Muted white for the label */
+    font-size: 0.85rem;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-top: 12px;
+    margin-top: 10px;
 }
 
-/* MOBILE FIX: Stacks the ovals so they remain readable on phones */
+/* MOBILE FIX: Stacks columns on smaller screens */
 @media (max-width: 768px) {
     .stats-grid {
         grid-template-columns: 1fr;
-        gap: 25px;
+        gap: 20px;
     }
     .stat-pill {
-        padding: 50px 30px;
+        padding: 40px 20px;
     }
 }
