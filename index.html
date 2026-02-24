@@ -248,5 +248,26 @@
             document.getElementById('statusPopup').style.display = 'none';
         }
     </script>
+    <div id="quizModal" class="quiz-overlay">
+    <div class="quiz-card-glass">
+        <button class="close-quiz" onclick="toggleQuiz()">✕</button>
+        
+        <div id="quiz-content">
+            <div class="quiz-progress-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <p class="step-label">STEP 1 / 4</p>
+            <h2 class="quiz-question">What is your typical sleep schedule?</h2>
+            <div class="quiz-options">
+                <button class="quiz-btn-sheer" onclick="nextQuizStep(2)">Early Bird 🌅</button>
+                <button class="quiz-btn-sheer" onclick="nextQuizStep(2)">Night Owl 🦉</button>
+                <button class="quiz-btn-sheer" onclick="nextQuizStep(2)">Flexible ⏳</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
