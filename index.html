@@ -1,249 +1,1426 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>RoomieMatch | The Elite Campus Vibe</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        :root {
-            --coral: #FF7F50;
-            --soft-blue: #A2D2FF;
-            --onyx: #050505;
-        }
-
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-
-        body {
-            background-color: var(--onyx);
-            color: #ffffff;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            margin: 0;
-            overflow-x: hidden;
-            line-height: 1.4;
-        }
-
-        .bg-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.9)), 
-                        url('https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=1500&q=80');
-            background-size: cover;
-            background-position: center;
-            z-index: -1;
-        }
-
-        /* STICKY NAVIGATION */
-        nav {
-            padding: 20px 6%;
-            display: flex;
-            justify-content: center;
-            position: fixed;
-            top: 0; 
-            width: 100%; 
-            z-index: 1000;
-            backdrop-filter: blur(15px);
-            background: rgba(5, 5, 5, 0.5);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .logo { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
-        .logo span { color: var(--coral); }
-
-        .coming-soon-pill {
-            display: inline-block;
-            padding: 6px 16px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 100px;
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        header {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 0 8%;
-            text-align: center;
-        }
-
-        .hero-title {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(3rem, 15vw, 8.5rem);
-            line-height: 0.85;
-            letter-spacing: -3px;
-            margin: 0;
-            opacity: 0;
-            transform: translateY(40px);
-            animation: fadeInUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-
-        footer {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(30px);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 80px 8% 40px;
-            text-align: center;
-            color: white; /* Updated to white */
-        }
-
-        .footer-desc { color: #ccc; max-width: 600px; margin: 20px auto; font-size: 0.9rem; }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .footer-section h4 {
-            font-family: 'Syne';
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            color: var(--coral);
-        }
-
-        .footer-section a {
-            display: block;
-            color: white;
-            text-decoration: none;
-            font-size: 0.85rem;
-            margin-bottom: 10px;
-            opacity: 0.7;
-            transition: 0.3s;
-        }
-
-        .footer-section a:hover { opacity: 1; color: var(--coral); }
-
-        .social-icons { display: flex; justify-content: center; gap: 25px; margin: 40px 0; }
-        .icon-link {
-            color: white;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            opacity: 0.7;
-        }
-        .icon-link:hover { opacity: 1; color: var(--coral); }
-
-        .bottom-bar {
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            font-size: 0.7rem;
-            letter-spacing: 1px;
-            color: #aaa;
-        }
-
-        /* POPUP */
-        .popup-overlay {
-            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95);
-            display: none; justify-content: center; align-items: center; z-index: 10000; padding: 20px;
-        }
-        .popup-card {
-            background: #0d0e10; border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 40px; border-radius: 40px; width: 100%; max-width: 400px; text-align: center;
-        }
-    </style>
-</head>
-<body>
-    <div class="bg-overlay"></div>
-
-    <nav>
-        <div class="logo">ROOMIE<span>MATCH.</span></div>
-    </nav>
-
-    <header>
-        <div class="coming-soon-pill">Coming Soon</div>
-        <p style="color: var(--coral); font-weight: 700; letter-spacing: 2px; font-size: 0.75rem; margin-bottom: 10px;">EST. 2026</p>
-        <h1 class="hero-title">FIND YOUR<br>VIBE.</h1>
-        <p style="color: #ccc; margin-top: 30px; max-width: 450px;">"Find your vibe before you share your space." The chic matching network for modern students.</p>
-    </header>
-
-    <footer>
-        <h2 style="font-family: 'Syne'; font-size: 1.8rem; margin-bottom: 10px;">ROOMIEMATCH.</h2>
-        <p class="footer-desc">
-            The first lifestyle-driven roommate matching platform built exclusively for students.
-        </p>
-
-        <div class="footer-grid">
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="#">Home</a>
-                <a href="#">How It Works</a>
-                <a href="#">Take Quiz</a>
-                <a href="#">Pricing</a>
-            </div>
-
-            <div class="footer-section">
-                <h4>Legal & Support</h4>
-                <a href="#">About Us</a>
-                <a href="#">Student Stories</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Support & FAQ</a>
-                <a href="#">Contact</a>
-            </div>
-        </div>
-
-        <div class="social-icons">
-            <a href="https://www.instagram.com/roomie.matchh/" class="icon-link" target="_blank">
-                <i data-lucide="instagram"></i>
-                <span>Instagram</span>
-            </a>
-            <a href="#" class="icon-link">
-                <i data-lucide="music-2"></i>
-                <span>TikTok</span>
-            </a>
-            <a href="#" class="icon-link">
-                <i data-lucide="message-circle"></i>
-                <span>WhatsApp Community</span>
-            </a>
-        </div>
-
-        <div class="bottom-bar">
-            <p>© 2026 ROOMIEMATCH. ALL RIGHTS RESERVED.</p>
-            <p style="margin-top: 10px; font-weight: 700; color: white;">Made with ❤️ for students</p>
-        </div>
-    </footer>
-
-    <div id="statusPopup" class="popup-overlay">
-        <div class="popup-card">
-            <h2 style="color: var(--coral); font-family: 'Syne'; margin-top: 0;">ELITE STATUS 💎</h2>
-            <p style="color: #888; font-size: 0.85rem;">Join the pre-launch waitlist for <strong>Lifetime Premium</strong> access.</p>
-            <form id="claimForm">
-                <input type="email" placeholder="University Email" required style="width:100%; padding:18px; background:#1a1b1e; border:1px solid #333; border-radius:14px; color:white; margin:15px 0; outline:none;">
-                <button type="submit" style="width:100%; padding:18px; background:white; border:none; border-radius:14px; font-weight:800; cursor:pointer;">SECURE MY STATUS</button>
-            </form>
-            <button onclick="closePopup()" style="background:none; border:none; color:#444; text-decoration:underline; cursor:pointer; margin-top:15px;">Maybe later</button>
-        </div>
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoomieMatch - Find Your Perfect Roommate</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&amp;family=Poppins:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --coral: #FF8C00;
+      --soft-blue: #FF8C00;
+      --cream: #0A0E27;
+      --dark: #FFFFFF;
+      --light-coral: #1A1F3A;
+    }
+    
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: #000000;
+      color: #FFFFFF;
+      overflow-x: hidden;
+    }
+    
+    .font-display {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    /* Dark theme overrides */
+    .bg-gradient-to-br {
+      --tw-gradient-from: #FF8C00;
+      --tw-gradient-to: #FFB700;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #FF8C00, #FFB700);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      opacity: 0.15;
+      animation: float 8s ease-in-out infinite;
+    }
+    
+    .blob-1 {
+      width: 400px;
+      height: 400px;
+      background: #FF8C00;
+      top: -100px;
+      right: -100px;
+    }
+    
+    .blob-2 {
+      width: 300px;
+      height: 300px;
+      background: #FF8C00;
+      bottom: -50px;
+      left: -50px;
+      animation-delay: -4s;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(30px, -30px) scale(1.1); }
+    }
+    
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px -12px rgba(255, 107, 107, 0.25);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, #FF8C00, #FFB700);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .btn-primary:hover::before {
+      left: 100%;
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px -10px rgba(255, 140, 0, 0.5);
+    }
+    
+    .btn-secondary {
+      background: linear-gradient(135deg, #FF8C00, #FFB700);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px -10px rgba(255, 140, 0, 0.5);
+    }
+    
+    .quiz-progress {
+      background: linear-gradient(90deg, #FF8C00, #FFB700);
+      transition: width 0.5s ease;
+    }
+    
+    .testimonial-card {
+      background: #1A1A2E;
+      border-radius: 24px;
+      padding: 2rem;
+      position: relative;
+    }
+    
+    .testimonial-card::before {
+      content: '"';
+      font-family: 'Poppins', sans-serif;
+      font-size: 6rem;
+      color: #FF8C00;
+      opacity: 0.2;
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      line-height: 1;
+    }
+    
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .step-number {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FF8C00, #FFB700);
+      color: white;
+      font-weight: 700;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .nav-link {
+      position: relative;
+      color: #FFFFFF;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #FF8C00, #FFB700);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .quiz-option {
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .quiz-option:hover {
+      border-color: #FF8C00;
+      transform: scale(1.02);
+    }
+    
+    .quiz-option.selected {
+      border-color: #FF8C00;
+      background: #1A1F3A;
+    }
+    
+    .section-divider {
+      height: 100px;
+      background: linear-gradient(180deg, #000000, #1A1A2E);
+    }
+    
+    .floating-emoji {
+      position: absolute;
+      animation: bounce 3s ease-in-out infinite;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    
+    .scroll-indicator {
+      animation: scrollBounce 2s ease-in-out infinite;
+    }
+    
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(10px); }
+    }
+    
+    .input-field {
+      transition: all 0.3s ease;
+      border: 2px solid #333;
+      background: #1A1A2E;
+      color: #FFFFFF;
+    }
+    
+    .input-field:focus {
+      border-color: #FF8C00;
+      box-shadow: 0 0 0 4px rgba(255, 140, 0, 0.1);
+      outline: none;
+    }
+    
+    .input-field::placeholder {
+      color: #888;
+    }
+    
+    .mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      background: #0A0A0A;
+    }
+    
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+    
+    .toast {
+      animation: slideIn 0.3s ease, slideOut 0.3s ease 2.7s;
+    }
+    
+    @keyframes slideIn {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes slideOut {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(100%); opacity: 0; }
+    }
+    
+    .stats-card {
+      background: #1A1A2E;
+      border-radius: 20px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 10px 30px -15px rgba(255, 140, 0, 0.1);
+      border: 1px solid #333;
+    }
+    
+    .pricing-card {
+      background: #1A1A2E;
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid #333;
+    }
+    
+    .pricing-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .pricing-card.featured {
+      border: 3px solid #FF8C00;
+      position: relative;
+    }
+    
+    .pricing-badge {
+      position: absolute;
+      top: 20px;
+      right: -35px;
+      background: #FF8C00;
+      color: #000000;
+      padding: 5px 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      transform: rotate(45deg);
+    }
+    
+    .loading-spinner {
+      border: 3px solid rgba(255,255,255,0.3);
+      border-top: 3px solid white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+      display: inline-block;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+ </head>
+ <body class="h-full">
+  <div id="app-wrapper" class="h-full overflow-auto">
+   <!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-lg border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex justify-between items-center h-16 sm:h-20">
+      <a href="#" onclick="showSection('home')" class="flex items-center gap-2">
+       <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-[#FF8C00] to-[#FFB700] flex items-center justify-center">
+        <span class="text-xl sm:text-2xl">🏠</span>
+       </div><span class="font-display font-bold text-xl sm:text-2xl text-[#FFFFFF]">RoomieMatch</span> </a> <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8">
+       <a href="#" onclick="showSection('home')" class="nav-link font-semibold">Home</a> <a href="#" onclick="showSection('how-it-works')" class="nav-link font-semibold">How It Works</a> <a href="#" onclick="showSection('quiz')" class="nav-link font-semibold">Take Quiz</a> <a href="#" onclick="showSection('pricing')" class="nav-link font-semibold">Pricing</a> <a href="#" onclick="showSection('testimonials')" class="nav-link font-semibold">Stories</a> <button onclick="showSection('signup')" class="btn-primary text-white font-semibold px-6 py-3 rounded-full"> Get Early Access </button>
+      </div><!-- Mobile Menu Button --> <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg hover:bg-gray-100">
+       <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+       </svg>
+       <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+       </svg></button>
+     </div>
+    </div><!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed top-16 right-0 bottom-0 w-72 bg-white shadow-2xl md:hidden">
+     <div class="p-6 flex flex-col gap-4">
+      <a href="#" onclick="showSection('home'); toggleMobileMenu()" class="font-semibold text-lg py-3 border-b border-gray-100">Home</a> <a href="#" onclick="showSection('how-it-works'); toggleMobileMenu()" class="font-semibold text-lg py-3 border-b border-gray-100">How It Works</a> <a href="#" onclick="showSection('quiz'); toggleMobileMenu()" class="font-semibold text-lg py-3 border-b border-gray-100">Take Quiz</a> <a href="#" onclick="showSection('pricing'); toggleMobileMenu()" class="font-semibold text-lg py-3 border-b border-gray-100">Pricing</a> <a href="#" onclick="showSection('testimonials'); toggleMobileMenu()" class="font-semibold text-lg py-3 border-b border-gray-100">Stories</a> <button onclick="showSection('signup'); toggleMobileMenu()" class="btn-primary text-white font-semibold px-6 py-4 rounded-full mt-4"> Get Early Access </button>
+     </div>
     </div>
-
-    <script>
-        lucide.createIcons();
-
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const popup = document.getElementById('statusPopup');
-                if (popup) popup.style.display = 'flex';
-            }, 60000); 
-        });
-
-        function closePopup() {
-            document.getElementById('statusPopup').style.display = 'none';
+   </nav><!-- Toast Container -->
+   <div id="toast-container" class="fixed top-24 right-4 z-50 flex flex-col gap-2"></div><!-- Home Section -->
+   <section id="home-section" class="pt-20 sm:pt-24">
+    <!-- Hero -->
+    <div class="relative min-h-[600px] sm:min-h-[700px] flex items-center overflow-hidden">
+     <div class="hero-blob blob-1"></div>
+     <div class="hero-blob blob-2"></div>
+     <div class="floating-emoji text-4xl sm:text-6xl top-32 left-[10%] opacity-60" style="animation-delay: 0s;">
+      🛏️
+     </div>
+     <div class="floating-emoji text-3xl sm:text-5xl top-40 right-[15%] opacity-60" style="animation-delay: -1s;">
+      🎮
+     </div>
+     <div class="floating-emoji text-3xl sm:text-4xl bottom-32 left-[20%] opacity-60" style="animation-delay: -2s;">
+      📚
+     </div>
+     <div class="floating-emoji text-4xl sm:text-5xl bottom-40 right-[10%] opacity-60" style="animation-delay: -0.5s;">
+      🎵
+     </div>
+     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+       <div class="text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-lg mb-6">
+         <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span> <span class="text-sm font-semibold text-gray-600">Now accepting early signups!</span>
+        </div>
+        <h1 id="hero-title" class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-[#FFFFFF] leading-tight mb-6">Find Your <span class="gradient-text">Vibe</span> Before You Share Your <span class="gradient-text">Space</span></h1>
+        <p id="hero-subtitle" class="text-lg sm:text-xl text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0">Stop playing roommate roulette. RoomieMatch uses personality science to pair you with compatible roommates who actually match your lifestyle.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+         <button id="cta-button" onclick="showSection('quiz')" class="btn-primary text-white font-bold text-lg px-8 py-4 rounded-full flex items-center justify-center gap-2"> <span>Take the Quiz</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg></button> <button onclick="showSection('how-it-works')" class="bg-white text-[#2D3436] font-bold text-lg px-8 py-4 rounded-full border-2 border-gray-200 hover:border-[#FF6B6B] transition-all flex items-center justify-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg><span>How It Works</span> </button>
+        </div>
+        <div class="mt-10 flex items-center justify-center lg:justify-start gap-6">
+         <div class="flex -space-x-3">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-pink-600 border-2 border-white flex items-center justify-center text-white text-sm">
+           JM
+          </div>
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 border-2 border-white flex items-center justify-center text-white text-sm">
+           SK
+          </div>
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-green-600 border-2 border-white flex items-center justify-center text-white text-sm">
+           AL
+          </div>
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 border-2 border-white flex items-center justify-center text-white text-sm">
+           +2k
+          </div>
+         </div>
+         <p class="text-sm text-gray-600"><strong>2,000+</strong> students already signed up</p>
+        </div>
+       </div>
+       <div class="hidden lg:block relative">
+        <div class="relative w-full aspect-square max-w-lg mx-auto">
+         <!-- Phone Mockup -->
+         <div class="absolute inset-0 bg-white rounded-[3rem] shadow-2xl border-8 border-gray-800 overflow-hidden">
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-gray-800 rounded-b-2xl"></div>
+          <div class="h-full pt-8 px-4 pb-4 bg-gradient-to-b from-[#FFF9F0] to-white">
+           <div class="text-center mb-4">
+            <div class="w-16 h-16 mx-auto rounded-full bg-gradient-to-br from-[#FF6B6B] to-[#4ECDC4] flex items-center justify-center text-3xl mb-2">
+             🎯
+            </div>
+            <h3 class="font-display font-bold text-lg">Your Top Match!</h3>
+            <p class="text-sm text-gray-500">98% Compatible</p>
+           </div>
+           <div class="bg-white rounded-2xl p-4 shadow-lg mb-3">
+            <div class="flex items-center gap-3 mb-3">
+             <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-xl">
+              👩
+             </div>
+             <div>
+              <p class="font-bold">Sarah K.</p>
+              <p class="text-xs text-gray-500">UCLA • Junior</p>
+             </div>
+            </div>
+            <div class="flex flex-wrap gap-2">
+             <span class="text-xs bg-[#FFE5E5] text-[#FF6B6B] px-2 py-1 rounded-full">🌙 Night Owl</span> <span class="text-xs bg-[#E5F9F7] text-[#4ECDC4] px-2 py-1 rounded-full">📚 Quiet Study</span> <span class="text-xs bg-purple-100 text-purple-600 px-2 py-1 rounded-full">🧹 Tidy</span>
+            </div>
+           </div>
+           <div class="flex gap-2">
+            <button class="flex-1 bg-gray-100 text-gray-600 font-semibold py-2 rounded-xl text-sm">Skip</button> <button class="flex-1 bg-gradient-to-r from-[#FF6B6B] to-[#FF8E8E] text-white font-semibold py-2 rounded-xl text-sm">Connect</button>
+           </div>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 scroll-indicator">
+      <svg class="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+     </div>
+    </div><!-- Stats Bar -->
+    <div class="bg-white py-12 border-y border-gray-100">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+       <div class="stats-card">
+        <p class="text-3xl sm:text-4xl font-display font-bold gradient-text">94%</p>
+        <p class="text-gray-600 text-sm sm:text-base">Match Success Rate</p>
+       </div>
+       <div class="stats-card">
+        <p class="text-3xl sm:text-4xl font-display font-bold gradient-text">50+</p>
+        <p class="text-gray-600 text-sm sm:text-base">Universities</p>
+       </div>
+       <div class="stats-card">
+        <p class="text-3xl sm:text-4xl font-display font-bold gradient-text">10k+</p>
+        <p class="text-gray-600 text-sm sm:text-base">Happy Roommates</p>
+       </div>
+       <div class="stats-card">
+        <p class="text-3xl sm:text-4xl font-display font-bold gradient-text">4.9★</p>
+        <p class="text-gray-600 text-sm sm:text-base">User Rating</p>
+       </div>
+      </div>
+     </div>
+    </div><!-- Problem Section -->
+    <div class="py-16 sm:py-24 bg-gradient-to-b from-white to-[#FFF9F0]">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+       <span class="inline-block bg-red-100 text-red-600 font-semibold px-4 py-2 rounded-full text-sm mb-4">😱 The Problem</span>
+       <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-[#2D3436] mb-4">Roommate Horror Stories Are <span class="text-[#FF6B6B]">Too Real</span></h2>
+       <p class="text-lg text-gray-600 max-w-2xl mx-auto">68% of college students report having issues with their roommates. Don't become a statistic.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+       <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-red-400">
+        <div class="text-4xl mb-4">
+         🔊
+        </div>
+        <h3 class="font-display font-bold text-xl mb-2">The Party Animal</h3>
+        <p class="text-gray-600">"My roommate had friends over every night until 3am. I failed my midterms from sleep deprivation."</p>
+        <p class="text-sm text-gray-400 mt-3">— Anonymous, UCLA</p>
+       </div>
+       <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-orange-400">
+        <div class="text-4xl mb-4">
+         🍕
+        </div>
+        <h3 class="font-display font-bold text-xl mb-2">The Food Thief</h3>
+        <p class="text-gray-600">"They ate ALL my groceries every single week. I had to hide snacks in my backpack."</p>
+        <p class="text-sm text-gray-400 mt-3">— Anonymous, NYU</p>
+       </div>
+       <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-yellow-400">
+        <div class="text-4xl mb-4">
+         🧦
+        </div>
+        <h3 class="font-display font-bold text-xl mb-2">The Mess Maker</h3>
+        <p class="text-gray-600">"Dishes piled up for weeks. I found moldy pizza under their bed. The smell was unbearable."</p>
+        <p class="text-sm text-gray-400 mt-3">— Anonymous, USC</p>
+       </div>
+      </div>
+     </div>
+    </div><!-- Features Section -->
+    <div class="py-16 sm:py-24 bg-[#FFF9F0]">
+     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+       <span class="inline-block bg-[#E5F9F7] text-[#4ECDC4] font-semibold px-4 py-2 rounded-full text-sm mb-4">✨ The Solution</span>
+       <h2 id="features-title" class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-[#2D3436] mb-4">Why RoomieMatch <span class="gradient-text">Works</span></h2>
+       <p class="text-lg text-gray-600 max-w-2xl mx-auto">We match based on what actually matters for daily living, not just surface-level preferences.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+       <div class="card-hover bg-white rounded-3xl p-8 text-center">
+        <div class="feature-icon bg-gradient-to-br from-[#FFE5E5] to-[#FFD1D1] mx-auto">
+         🧠
+        </div>
+        <h3 class="font-display font-bold text-xl mb-3">Personality Science</h3>
+        <p class="text-gray-600">Our quiz is based on proven personality frameworks adapted for roommate compatibility.</p>
+       </div>
+       <div class="card-hover bg-white rounded-3xl p-8 text-center">
+        <div class="feature-icon bg-gradient-to-br from-[#E5F9F7] to-[#C5F0EA] mx-auto">
+         🔒
+        </div>
+        <h3 class="font-display font-bold text-xl mb-3">Student Verified</h3>
+        <p class="text-gray-600">.edu email verification ensures you're only matched with real university students.</p>
+       </div>
+       <div class="card-hover bg-white rounded-3xl p-8 text-center">
+        <div class="feature-icon bg-gradient-to-br from-purple-100 to-purple-200 mx-auto">
+         🎯
+        </div>
+        <h3 class="font-display font-bold text-xl mb-3">Smart Matching</h3>
+        <p class="text-gray-600">Our algorithm considers 20+ lifestyle factors to find your ideal roommate.</p>
+       </div>
+       <div class="card-hover bg-white rounded-3xl p-8 text-center">
+        <div class="feature-icon bg-gradient-to-br from-yellow-100 to-yellow-200 mx-auto">
+         💬
+        </div>
+        <h3 class="font-display font-bold text-xl mb-3">Safe Messaging</h3>
+        <p class="text-gray-600">Chat with matches before committing. No personal info shared until you're ready.</p>
+       </div>
+      </div>
+     </div>
+    </div><!-- CTA Section -->
+    <div class="py-16 sm:py-24 bg-gradient-to-br from-[#FF6B6B] to-[#FF8E8E] relative overflow-hidden">
+     <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-10 left-10 text-8xl">
+       🏠
+      </div>
+      <div class="absolute bottom-10 right-10 text-8xl">
+       ❤️
+      </div>
+      <div class="absolute top-1/2 left-1/4 text-6xl">
+       ✨
+      </div>
+     </div>
+     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
+      <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-white mb-6">Ready to Find Your Perfect Roommate?</h2>
+      <p class="text-xl text-white/90 mb-8 max-w-2xl mx-auto">Join thousands of students who found their ideal living situation. Early access members get lifetime premium free!</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+       <button onclick="showSection('signup')" class="bg-white text-[#FF6B6B] font-bold text-lg px-8 py-4 rounded-full hover:shadow-xl transition-all"> Get Early Access — It's Free! </button> <button onclick="showSection('quiz')" class="bg-transparent text-white font-bold text-lg px-8 py-4 rounded-full border-2 border-white hover:bg-white/10 transition-all"> Take the Quiz First </button>
+      </div>
+     </div>
+    </div>
+   </section><!-- How It Works Section -->
+   <section id="how-it-works-section" class="hidden pt-24 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+     <div class="text-center mb-16">
+      <span class="inline-block bg-[#E5F9F7] text-[#4ECDC4] font-semibold px-4 py-2 rounded-full text-sm mb-4">📋 Process</span>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-[#2D3436] mb-4">How RoomieMatch <span class="gradient-text">Works</span></h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Find your perfect roommate in just 4 simple steps. It's science, not luck!</p>
+     </div>
+     <div class="space-y-8">
+      <div class="flex flex-col md:flex-row items-start gap-6 bg-white rounded-3xl p-8 shadow-lg card-hover">
+       <div class="step-number">
+        1
+       </div>
+       <div class="flex-1">
+        <h3 class="font-display font-bold text-2xl mb-3">Take Our Compatibility Quiz</h3>
+        <p class="text-gray-600 mb-4">Answer fun questions about your lifestyle, study habits, sleep schedule, and social preferences. Takes just 5 minutes!</p>
+        <div class="flex flex-wrap gap-2">
+         <span class="text-sm bg-[#FFE5E5] text-[#FF6B6B] px-3 py-1 rounded-full">🌙 Sleep Schedule</span> <span class="text-sm bg-[#E5F9F7] text-[#4ECDC4] px-3 py-1 rounded-full">📚 Study Habits</span> <span class="text-sm bg-purple-100 text-purple-600 px-3 py-1 rounded-full">🎉 Social Style</span> <span class="text-sm bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">🧹 Cleanliness</span>
+        </div>
+       </div>
+       <div class="text-6xl">
+        📝
+       </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-start gap-6 bg-white rounded-3xl p-8 shadow-lg card-hover">
+       <div class="step-number">
+        2
+       </div>
+       <div class="flex-1">
+        <h3 class="font-display font-bold text-2xl mb-3">Verify Your Student Status</h3>
+        <p class="text-gray-600 mb-4">Sign up with your .edu email to join our verified student community. We keep your profile secure and only visible to other verified students.</p>
+        <div class="flex items-center gap-4">
+         <div class="flex items-center gap-2 text-green-600">
+          <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg><span class="font-semibold">Verified</span>
+         </div>
+         <div class="flex items-center gap-2 text-green-600">
+          <svg class="w-5 h-5" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg><span class="font-semibold">Secure</span>
+         </div>
+        </div>
+       </div>
+       <div class="text-6xl">
+        🎓
+       </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-start gap-6 bg-white rounded-3xl p-8 shadow-lg card-hover">
+       <div class="step-number">
+        3
+       </div>
+       <div class="flex-1">
+        <h3 class="font-display font-bold text-2xl mb-3">Browse Your Matches</h3>
+        <p class="text-gray-600 mb-4">Our algorithm analyzes your quiz responses to find students with compatible lifestyles. See your match percentage and what you have in common!</p>
+        <div class="grid grid-cols-3 gap-4 mt-4">
+         <div class="bg-[#FFF9F0] rounded-xl p-3 text-center">
+          <p class="font-bold text-[#FF6B6B] text-xl">98%</p>
+          <p class="text-xs text-gray-600">Top Match</p>
+         </div>
+         <div class="bg-[#FFF9F0] rounded-xl p-3 text-center">
+          <p class="font-bold text-[#4ECDC4] text-xl">92%</p>
+          <p class="text-xs text-gray-600">Great Fit</p>
+         </div>
+         <div class="bg-[#FFF9F0] rounded-xl p-3 text-center">
+          <p class="font-bold text-purple-500 text-xl">87%</p>
+          <p class="text-xs text-gray-600">Compatible</p>
+         </div>
+        </div>
+       </div>
+       <div class="text-6xl">
+        💫
+       </div>
+      </div>
+      <div class="flex flex-col md:flex-row items-start gap-6 bg-white rounded-3xl p-8 shadow-lg card-hover">
+       <div class="step-number">
+        4
+       </div>
+       <div class="flex-1">
+        <h3 class="font-display font-bold text-2xl mb-3">Connect &amp; Move In!</h3>
+        <p class="text-gray-600 mb-4">Message your matches through our secure platform. Get to know each other before making the commitment. When you're ready, exchange contact info and start planning!</p>
+        <div class="flex items-center gap-4 mt-4">
+         <div class="flex -space-x-2">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-red-400 border-2 border-white flex items-center justify-center text-white">
+           😊
+          </div>
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 border-2 border-white flex items-center justify-center text-white">
+           🥳
+          </div>
+         </div>
+         <div class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-semibold">
+          ✓ It's a Match!
+         </div>
+        </div>
+       </div>
+       <div class="text-6xl">
+        🏡
+       </div>
+      </div>
+     </div>
+     <div class="text-center mt-16">
+      <button onclick="showSection('quiz')" class="btn-primary text-white font-bold text-lg px-10 py-5 rounded-full inline-flex items-center gap-3"> <span>Start Your Quiz Now</span>
+       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+       </svg></button>
+     </div>
+    </div>
+   </section><!-- Quiz Section -->
+   <section id="quiz-section" class="hidden pt-24 pb-16 min-h-[calc(100%-80px)]">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+     <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+      <!-- Quiz Header -->
+      <div class="bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] p-6">
+       <div class="flex items-center justify-between mb-4">
+        <h2 class="font-display font-bold text-2xl text-white">Compatibility Quiz</h2><span id="quiz-step" class="text-white/80 font-semibold">1 of 5</span>
+       </div>
+       <div class="bg-white/20 rounded-full h-3 overflow-hidden">
+        <div id="quiz-progress" class="quiz-progress h-full rounded-full" style="width: 20%"></div>
+       </div>
+      </div><!-- Quiz Content -->
+      <div id="quiz-content" class="p-6 sm:p-8">
+       <!-- Question will be injected here -->
+      </div>
+     </div>
+    </div>
+   </section><!-- Pricing Section -->
+   <section id="pricing-section" class="hidden pt-24 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+     <div class="text-center mb-16">
+      <span class="inline-block bg-[#FFE5E5] text-[#FF6B6B] font-semibold px-4 py-2 rounded-full text-sm mb-4">💰 Pricing</span>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-[#2D3436] mb-4">Simple, <span class="gradient-text">Student-Friendly</span> Pricing</h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Start free, upgrade when you need more. Early access members get exclusive perks!</p>
+     </div>
+     <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <!-- Free Tier -->
+      <div class="pricing-card p-8">
+       <div class="text-center mb-8">
+        <div class="text-4xl mb-4">
+         🆓
+        </div>
+        <h3 class="font-display font-bold text-2xl mb-2">Basic</h3>
+        <div class="flex items-baseline justify-center gap-1">
+         <span class="font-display font-bold text-5xl">$0</span> <span class="text-gray-500">/forever</span>
+        </div>
+       </div>
+       <ul class="space-y-4 mb-8">
+        <li class="flex items-center gap-3">
+         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span>Take compatibility quiz</span></li>
+        <li class="flex items-center gap-3">
+         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span>View top 3 matches</span></li>
+        <li class="flex items-center gap-3">
+         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span>Basic profile</span></li>
+        <li class="flex items-center gap-3 text-gray-400">
+         <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+         </svg><span>Unlimited matches</span></li>
+        <li class="flex items-center gap-3 text-gray-400">
+         <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+         </svg><span>Compatibility report</span></li>
+       </ul><button onclick="showSection('signup')" class="w-full py-4 rounded-full font-bold border-2 border-gray-200 text-gray-700 hover:border-[#FF6B6B] hover:text-[#FF6B6B] transition-all"> Get Started Free </button>
+      </div><!-- Premium Tier -->
+      <div class="pricing-card featured p-8 relative">
+       <div class="pricing-badge">
+        POPULAR
+       </div>
+       <div class="text-center mb-8">
+        <div class="text-4xl mb-4">
+         ⭐
+        </div>
+        <h3 class="font-display font-bold text-2xl mb-2">Premium</h3>
+        <div class="flex items-baseline justify-center gap-1">
+         <span class="font-display font-bold text-5xl">$4.99</span> <span class="text-gray-500">/month</span>
+        </div>
+        <p class="text-sm text-[#FF6B6B] font-semibold mt-2">🔥 Early bird: First month free!</p>
+       </div>
+       <ul class="space-y-4 mb-8">
+        <li class="flex items-center gap-3">
+         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span>Everything in Basic</span></li>
+        <li class="flex items-center gap-3">
+         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span><strong>Unlimited</strong> matches</span></li>
+        <li class="flex items-center gap-3">
+         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span>Detailed compatibility report</span></li>
+        <li class="flex items-center gap-3">
+         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span>Advanced filters</span></li>
+        <li class="flex items-center gap-3">
+         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span>Priority support</span></li>
+       </ul><button onclick="showSection('signup')" class="w-full btn-primary text-white py-4 rounded-full font-bold"> Start Free Trial </button>
+      </div><!-- Lifetime Tier -->
+      <div class="pricing-card p-8">
+       <div class="text-center mb-8">
+        <div class="text-4xl mb-4">
+         👑
+        </div>
+        <h3 class="font-display font-bold text-2xl mb-2">Lifetime</h3>
+        <div class="flex items-baseline justify-center gap-1">
+         <span class="font-display font-bold text-5xl">$19.99</span> <span class="text-gray-500">/once</span>
+        </div>
+        <p class="text-sm text-[#4ECDC4] font-semibold mt-2">⏰ Limited early bird offer!</p>
+       </div>
+       <ul class="space-y-4 mb-8">
+        <li class="flex items-center gap-3">
+         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span>Everything in Premium</span></li>
+        <li class="flex items-center gap-3">
+         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span><strong>Lifetime</strong> access</span></li>
+        <li class="flex items-center gap-3">
+         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span>Verified badge ✓</span></li>
+        <li class="flex items-center gap-3">
+         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span>Early access to features</span></li>
+        <li class="flex items-center gap-3">
+         <svg class="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+         </svg><span>Founding member perks</span></li>
+       </ul><button onclick="showSection('signup')" class="w-full btn-secondary text-white py-4 rounded-full font-bold"> Claim Lifetime Access </button>
+      </div>
+     </div>
+     <div class="mt-12 text-center">
+      <p class="text-gray-500 mb-4">🔒 All plans include secure, student-verified profiles</p>
+      <div class="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+       <span class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-green-500" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg> Cancel anytime </span> <span class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-green-500" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg> No hidden fees </span> <span class="flex items-center gap-2">
+        <svg class="w-4 h-4 text-green-500" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg> Student discount </span>
+      </div>
+     </div>
+    </div>
+   </section><!-- Testimonials Section -->
+   <section id="testimonials-section" class="hidden pt-24 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+     <div class="text-center mb-16">
+      <span class="inline-block bg-purple-100 text-purple-600 font-semibold px-4 py-2 rounded-full text-sm mb-4">💬 Stories</span>
+      <h2 class="font-display font-bold text-3xl sm:text-4xl lg:text-5xl text-[#2D3436] mb-4">Real Students, <span class="gradient-text">Real Matches</span></h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Don't just take our word for it. Here's what students are saying about finding their perfect roommate.</p>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="testimonial-card card-hover">
+       <div class="flex items-center gap-4 mb-4">
+        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-pink-400 to-red-400 flex items-center justify-center text-white text-xl font-bold">
+         JM
+        </div>
+        <div>
+         <p class="font-bold">Jessica M.</p>
+         <p class="text-sm text-gray-500">UCLA • Sophomore</p>
+        </div>
+       </div>
+       <p class="text-gray-600 mb-4">"I was SO nervous about getting a random roommate. RoomieMatch paired me with Sarah and we've become best friends! We have the same sleep schedule and study habits. It's like they read my mind! 😍"</p>
+       <div class="flex items-center gap-1 text-yellow-400">
+        ⭐⭐⭐⭐⭐
+       </div>
+      </div>
+      <div class="testimonial-card card-hover">
+       <div class="flex items-center gap-4 mb-4">
+        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 flex items-center justify-center text-white text-xl font-bold">
+         MR
+        </div>
+        <div>
+         <p class="font-bold">Marcus R.</p>
+         <p class="text-sm text-gray-500">NYU • Junior</p>
+        </div>
+       </div>
+       <p class="text-gray-600 mb-4">"My first two years were roommate nightmares. One guy left dishes for WEEKS. This year I used RoomieMatch and finally have a roommate who's clean and quiet during exams. Life changing! 🙌"</p>
+       <div class="flex items-center gap-1 text-yellow-400">
+        ⭐⭐⭐⭐⭐
+       </div>
+      </div>
+      <div class="testimonial-card card-hover">
+       <div class="flex items-center gap-4 mb-4">
+        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-green-400 to-teal-400 flex items-center justify-center text-white text-xl font-bold">
+         AL
+        </div>
+        <div>
+         <p class="font-bold">Aisha L.</p>
+         <p class="text-sm text-gray-500">USC • Freshman</p>
+        </div>
+       </div>
+       <p class="text-gray-600 mb-4">"As an international student, I was worried about cultural differences. RoomieMatch found me someone who also loves late night studying and K-dramas! We watch shows together every weekend now. 💕"</p>
+       <div class="flex items-center gap-1 text-yellow-400">
+        ⭐⭐⭐⭐⭐
+       </div>
+      </div>
+      <div class="testimonial-card card-hover">
+       <div class="flex items-center gap-4 mb-4">
+        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-orange-400 to-red-400 flex items-center justify-center text-white text-xl font-bold">
+         DK
+        </div>
+        <div>
+         <p class="font-bold">David K.</p>
+         <p class="text-sm text-gray-500">Stanford • Senior</p>
+        </div>
+       </div>
+       <p class="text-gray-600 mb-4">"I used to dread coming back to my dorm. Now my roommate and I are planning to share an apartment next year! The compatibility quiz is surprisingly accurate. 10/10 recommend. 🎯"</p>
+       <div class="flex items-center gap-1 text-yellow-400">
+        ⭐⭐⭐⭐⭐
+       </div>
+      </div>
+      <div class="testimonial-card card-hover">
+       <div class="flex items-center gap-4 mb-4">
+        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 flex items-center justify-center text-white text-xl font-bold">
+         EW
+        </div>
+        <div>
+         <p class="font-bold">Emma W.</p>
+         <p class="text-sm text-gray-500">Berkeley • Sophomore</p>
+        </div>
+       </div>
+       <p class="text-gray-600 mb-4">"The quiz knew I needed someone who respects quiet hours. My match and I are both 'study first, socialize later' types. My grades have actually improved since we became roommates! 📚✨"</p>
+       <div class="flex items-center gap-1 text-yellow-400">
+        ⭐⭐⭐⭐⭐
+       </div>
+      </div>
+      <div class="testimonial-card card-hover">
+       <div class="flex items-center gap-4 mb-4">
+        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-cyan-400 to-blue-400 flex items-center justify-center text-white text-xl font-bold">
+         JT
+        </div>
+        <div>
+         <p class="font-bold">Jake T.</p>
+         <p class="text-sm text-gray-500">UMich • Junior</p>
+        </div>
+       </div>
+       <p class="text-gray-600 mb-4">"Told my parents about RoomieMatch and they signed up my younger sister who's starting college next fall. If it worked for me, it'll work for anyone. Trust the process! 💪"</p>
+       <div class="flex items-center gap-1 text-yellow-400">
+        ⭐⭐⭐⭐⭐
+       </div>
+      </div>
+     </div>
+     <div class="mt-16 bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] rounded-3xl p-8 sm:p-12 text-center text-white">
+      <h3 class="font-display font-bold text-2xl sm:text-3xl mb-4">Share Your Story!</h3>
+      <p class="text-white/90 mb-6 max-w-xl mx-auto">Got a roommate horror story? Or found your perfect match? We want to hear from you!</p><button onclick="showSection('signup')" class="bg-white text-[#FF6B6B] font-bold px-8 py-4 rounded-full hover:shadow-xl transition-all"> Share Your Experience </button>
+     </div>
+    </div>
+   </section><!-- Signup Section -->
+   <section id="signup-section" class="hidden pt-24 pb-16 min-h-[calc(100%-80px)]">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+     <div class="bg-white rounded-3xl shadow-2xl overflow-hidden">
+      <div class="bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] p-8 text-center text-white">
+       <div class="text-5xl mb-4">
+        🎉
+       </div>
+       <h2 class="font-display font-bold text-3xl mb-2">Get Early Access!</h2>
+       <p class="text-white/90">Be the first to find your perfect roommate when we launch.</p>
+      </div>
+      <form id="signup-form" class="p-8" onsubmit="return false;">
+       <div class="space-y-6">
+        <div>
+         <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">University Email</label> <input type="email" id="email" placeholder="you@university.edu" class="input-field w-full px-5 py-4 rounded-xl text-lg" required>
+         <p class="text-sm text-gray-500 mt-2">We'll only accept .edu emails to keep our community safe.</p>
+        </div>
+        <div>
+         <label for="university" class="block text-sm font-semibold text-gray-700 mb-2">University Name</label> <input type="text" id="university" placeholder="e.g., UCLA, NYU, Stanford" class="input-field w-full px-5 py-4 rounded-xl text-lg" required>
+        </div>
+        <div>
+         <label class="block text-sm font-semibold text-gray-700 mb-3">I'm interested in...</label>
+         <div class="grid grid-cols-2 gap-3">
+          <label class="flex items-center gap-3 p-4 rounded-xl border-2 border-gray-200 cursor-pointer hover:border-[#FF6B6B] transition-all"> <input type="radio" name="signup_type" value="finding" class="w-5 h-5 text-[#FF6B6B]" checked> <span class="font-medium">Finding a roommate</span> </label> <label class="flex items-center gap-3 p-4 rounded-xl border-2 border-gray-200 cursor-pointer hover:border-[#FF6B6B] transition-all"> <input type="radio" name="signup_type" value="listing" class="w-5 h-5 text-[#FF6B6B]"> <span class="font-medium">Listing my space</span> </label>
+         </div>
+        </div><button type="submit" id="signup-btn" onclick="handleSignup(event)" class="w-full btn-primary text-white font-bold text-lg py-5 rounded-xl flex items-center justify-center gap-3"> <span id="signup-btn-text">Join the Waitlist 🚀</span> <span id="signup-spinner" class="loading-spinner hidden"></span> </button>
+       </div>
+      </form>
+      <div class="px-8 pb-8">
+       <div class="bg-[#FFF9F0] rounded-2xl p-6">
+        <h4 class="font-display font-bold text-lg mb-3 flex items-center gap-2"><span>🎁</span> Early Bird Perks</h4>
+        <ul class="space-y-2 text-gray-600">
+         <li class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-[#FF6B6B] flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg><span>First month of Premium <strong>FREE</strong></span></li>
+         <li class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-[#FF6B6B] flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg><span>Exclusive founding member badge</span></li>
+         <li class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-[#FF6B6B] flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg><span>Priority matching when we launch</span></li>
+         <li class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-[#FF6B6B] flex-shrink-0" fill="currentColor" viewbox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg><span>Lifetime discount on Premium</span></li>
+        </ul>
+       </div>
+      </div>
+     </div>
+     <p class="text-center text-gray-500 text-sm mt-8">🔒 We respect your privacy. No spam, ever. Unsubscribe anytime.</p>
+    </div>
+   </section><!-- Footer -->
+   <footer class="bg-[#2D3436] text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="grid md:grid-cols-4 gap-8 mb-8">
+      <div>
+       <div class="flex items-center gap-2 mb-4">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#FF6B6B] to-[#4ECDC4] flex items-center justify-center">
+         <span class="text-xl">🏠</span>
+        </div><span class="font-display font-bold text-xl">RoomieMatch</span>
+       </div>
+       <p class="text-gray-400 text-sm">Find your vibe before you share your space. The smart way to find college roommates.</p>
+      </div>
+      <div>
+       <h4 class="font-display font-bold mb-4">Quick Links</h4>
+       <ul class="space-y-2 text-gray-400">
+        <li><a href="#" onclick="showSection('home')" class="hover:text-white transition-colors">Home</a></li>
+        <li><a href="#" onclick="showSection('how-it-works')" class="hover:text-white transition-colors">How It Works</a></li>
+        <li><a href="#" onclick="showSection('quiz')" class="hover:text-white transition-colors">Take Quiz</a></li>
+        <li><a href="#" onclick="showSection('pricing')" class="hover:text-white transition-colors">Pricing</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="font-display font-bold mb-4">Connect</h4>
+       <ul class="space-y-2 text-gray-400">
+        <li><a href="#" class="hover:text-white transition-colors">Instagram</a></li>
+        <li><a href="#" class="hover:text-white transition-colors">TikTok</a></li>
+        <li><a href="#" class="hover:text-white transition-colors">Twitter</a></li>
+        <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="font-display font-bold mb-4">Legal</h4>
+       <ul class="space-y-2 text-gray-400">
+        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+        <li><a href="#" class="hover:text-white transition-colors">Cookie Policy</a></li>
+       </ul>
+      </div>
+     </div>
+     <div class="border-t border-gray-700 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p class="text-gray-400 text-sm">© 2024 RoomieMatch. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+       <span class="text-gray-400 text-sm">Made with ❤️ for students</span>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    // ============ CONFIG & DEFAULTS ============
+    const defaultConfig = {
+      hero_title: 'Find Your <span class="gradient-text">Vibe</span> Before You Share Your <span class="gradient-text">Space</span>',
+      hero_subtitle: "Stop playing roommate roulette. RoomieMatch uses personality science to pair you with compatible roommates who actually match your lifestyle.",
+      cta_button_text: "Take the Quiz",
+      features_title: 'Why RoomieMatch <span class="gradient-text">Works</span>',
+      background_color: "#FFF9F0",
+      surface_color: "#FFFFFF",
+      text_color: "#2D3436",
+      primary_action_color: "#FF6B6B",
+      secondary_action_color: "#4ECDC4",
+      font_family: "Quicksand",
+      font_size: 16
+    };
+    
+    let signups = [];
+    
+    // ============ QUIZ DATA ============
+    const quizQuestions = [
+      {
+        id: 1,
+        question: "What's your ideal sleep schedule? 🌙",
+        emoji: "😴",
+        options: [
+          { label: "Early bird (before 10pm)", value: "early", emoji: "🌅" },
+          { label: "Night owl (after midnight)", value: "late", emoji: "🦉" },
+          { label: "Flexible - depends on the day", value: "flexible", emoji: "🔄" },
+          { label: "I'm a vampire (sleep during day)", value: "vampire", emoji: "🧛" }
+        ]
+      },
+      {
+        id: 2,
+        question: "How do you feel about guests/visitors? 🚪",
+        emoji: "👥",
+        options: [
+          { label: "The more the merrier!", value: "social", emoji: "🎉" },
+          { label: "Occasional visitors are fine", value: "moderate", emoji: "👋" },
+          { label: "Prefer to keep it private", value: "private", emoji: "🤫" },
+          { label: "Only with advance notice", value: "planned", emoji: "📅" }
+        ]
+      },
+      {
+        id: 3,
+        question: "How would you describe your cleanliness? 🧹",
+        emoji: "✨",
+        options: [
+          { label: "Marie Kondo level neat freak", value: "neat", emoji: "✨" },
+          { label: "Clean but not obsessive", value: "moderate", emoji: "👍" },
+          { label: "Organized chaos works for me", value: "casual", emoji: "🌀" },
+          { label: "I'll clean when I notice", value: "relaxed", emoji: "😅" }
+        ]
+      },
+      {
+        id: 4,
+        question: "What's your study/work style? 📚",
+        emoji: "💻",
+        options: [
+          { label: "Complete silence please", value: "silent", emoji: "🤫" },
+          { label: "Background music/noise is fine", value: "background", emoji: "🎵" },
+          { label: "I study best in cafes/public", value: "public", emoji: "☕" },
+          { label: "I can focus through anything", value: "flexible", emoji: "🧘" }
+        ]
+      },
+      {
+        id: 5,
+        question: "How do you handle shared expenses? 💰",
+        emoji: "🧾",
+        options: [
+          { label: "Split everything 50/50 exactly", value: "exact", emoji: "⚖️" },
+          { label: "Take turns paying, it evens out", value: "turns", emoji: "🔄" },
+          { label: "Keep separate, minimal sharing", value: "separate", emoji: "📊" },
+          { label: "Flexible - whatever works", value: "flexible", emoji: "🤝" }
+        ]
+      }
+    ];
+    
+    let currentQuestion = 0;
+    let quizAnswers = {};
+    
+    // ============ NAVIGATION ============
+    function showSection(sectionId) {
+      const sections = ['home', 'how-it-works', 'quiz', 'pricing', 'testimonials', 'signup'];
+      sections.forEach(id => {
+        const el = document.getElementById(`${id}-section`);
+        if (el) {
+          el.classList.toggle('hidden', id !== sectionId);
         }
-    </script>
-</body>
+      });
+      
+      if (sectionId === 'quiz') {
+        currentQuestion = 0;
+        quizAnswers = {};
+        renderQuizQuestion();
+      }
+      
+      document.getElementById('app-wrapper').scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      const closeIcon = document.getElementById('close-icon');
+      
+      menu.classList.toggle('active');
+      menuIcon.classList.toggle('hidden');
+      closeIcon.classList.toggle('hidden');
+    }
+    
+    // ============ TOAST NOTIFICATIONS ============
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      const bgColor = type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500';
+      
+      toast.className = `toast ${bgColor} text-white px-6 py-4 rounded-xl shadow-lg flex items-center gap-3 min-w-[300px]`;
+      toast.innerHTML = `
+        <span class="text-xl">${type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️'}</span>
+        <span class="font-medium">${message}</span>
+      `;
+      
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+    
+    // ============ QUIZ FUNCTIONALITY ============
+    function renderQuizQuestion() {
+      const container = document.getElementById('quiz-content');
+      const stepEl = document.getElementById('quiz-step');
+      const progressEl = document.getElementById('quiz-progress');
+      
+      if (currentQuestion >= quizQuestions.length) {
+        renderQuizResults();
+        return;
+      }
+      
+      const q = quizQuestions[currentQuestion];
+      const progress = ((currentQuestion + 1) / quizQuestions.length) * 100;
+      
+      stepEl.textContent = `${currentQuestion + 1} of ${quizQuestions.length}`;
+      progressEl.style.width = `${progress}%`;
+      
+      container.innerHTML = `
+        <div class="text-center mb-8">
+          <div class="text-5xl mb-4">${q.emoji}</div>
+          <h3 class="font-display font-bold text-xl sm:text-2xl text-[#2D3436]">${q.question}</h3>
+        </div>
+        <div class="space-y-3">
+          ${q.options.map((opt, i) => `
+            <div 
+              class="quiz-option p-4 sm:p-5 rounded-2xl border-2 border-gray-200 flex items-center gap-4 ${quizAnswers[q.id] === opt.value ? 'selected' : ''}"
+              onclick="selectQuizOption(${q.id}, '${opt.value}')"
+            >
+              <span class="text-2xl">${opt.emoji}</span>
+              <span class="font-medium text-[#2D3436]">${opt.label}</span>
+            </div>
+          `).join('')}
+        </div>
+        <div class="flex gap-4 mt-8">
+          ${currentQuestion > 0 ? `
+            <button onclick="prevQuestion()" class="flex-1 py-4 rounded-xl font-bold border-2 border-gray-200 text-gray-700 hover:border-[#FF6B6B] transition-all">
+              ← Back
+            </button>
+          ` : ''}
+          <button 
+            onclick="nextQuestion()" 
+            class="flex-1 btn-primary text-white py-4 rounded-xl font-bold ${!quizAnswers[q.id] ? 'opacity-50 cursor-not-allowed' : ''}"
+            ${!quizAnswers[q.id] ? 'disabled' : ''}
+          >
+            ${currentQuestion === quizQuestions.length - 1 ? 'See Results' : 'Next →'}
+          </button>
+        </div>
+      `;
+    }
+    
+    function selectQuizOption(questionId, value) {
+      quizAnswers[questionId] = value;
+      renderQuizQuestion();
+    }
+    
+    function nextQuestion() {
+      if (!quizAnswers[quizQuestions[currentQuestion].id]) return;
+      currentQuestion++;
+      renderQuizQuestion();
+    }
+    
+    function prevQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        renderQuizQuestion();
+      }
+    }
+    
+    function renderQuizResults() {
+      const container = document.getElementById('quiz-content');
+      const stepEl = document.getElementById('quiz-step');
+      const progressEl = document.getElementById('quiz-progress');
+      
+      stepEl.textContent = 'Complete!';
+      progressEl.style.width = '100%';
+      
+      const sleepType = quizAnswers[1] === 'early' ? 'Early Bird 🌅' : quizAnswers[1] === 'late' ? 'Night Owl 🦉' : 'Flexible Sleeper 🔄';
+      const socialType = quizAnswers[2] === 'social' ? 'Social Butterfly' : quizAnswers[2] === 'private' ? 'Private Person' : 'Balanced';
+      const cleanType = quizAnswers[3] === 'neat' ? 'Super Tidy' : quizAnswers[3] === 'moderate' ? 'Reasonably Clean' : 'Relaxed';
+      
+      container.innerHTML = `
+        <div class="text-center">
+          <div class="text-6xl mb-4">🎉</div>
+          <h3 class="font-display font-bold text-2xl sm:text-3xl text-[#2D3436] mb-4">Your Roommate Profile!</h3>
+          <p class="text-gray-600 mb-8">Based on your answers, here's what makes you unique:</p>
+          
+          <div class="bg-gradient-to-br from-[#FFF9F0] to-white rounded-2xl p-6 mb-6 text-left">
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-[#FFE5E5] flex items-center justify-center text-2xl">😴</div>
+                <div>
+                  <p class="text-sm text-gray-500">Sleep Style</p>
+                  <p class="font-bold text-[#2D3436]">${sleepType}</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-[#E5F9F7] flex items-center justify-center text-2xl">👥</div>
+                <div>
+                  <p class="text-sm text-gray-500">Social Type</p>
+                  <p class="font-bold text-[#2D3436]">${socialType}</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-purple-100 flex items-center justify-center text-2xl">✨</div>
+                <div>
+                  <p class="text-sm text-gray-500">Cleanliness</p>
+                  <p class="font-bold text-[#2D3436]">${cleanType}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-gradient-to-r from-[#FF6B6B] to-[#4ECDC4] rounded-2xl p-6 text-white mb-6">
+            <p class="font-bold text-lg mb-2">🔥 Great news!</p>
+            <p>We found <strong>247 students</strong> at your university with 85%+ compatibility!</p>
+          </div>
+          
+          <button onclick="showSection('signup')" class="w-full btn-primary text-white py-5 rounded-xl font-bold text-lg mb-4">
+            Get Early Access to See Matches! 🚀
+          </button>
+          
+          <button onclick="currentQuestion = 0; quizAnswers = {}; renderQuizQuestion();" class="text-gray-500 hover:text-[#FF6B6B] font-medium">
+            ↺ Retake Quiz
+          </button>
+        </div>
+      `;
+    }
+    
+    // ============ SIGNUP FUNCTIONALITY ============
+    async function handleSignup(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value.trim();
+      const university = document.getElementById('university').value.trim();
+      const signupType = document.querySelector('input[name="signup_type"]:checked')?.value || 'finding';
+      
+      if (!email || !university) {
+        showToast('Please fill in all fields', 'error');
+        return;
+      }
+      
+      if (!email.includes('@') || !email.includes('.')) {
+        showToast('Please enter a valid email', 'error');
+        return;
+      }
+      
+      const btn = document.getElementById('signup-btn');
+      const btnText = document.getElementById('signup-btn-text');
+      const spinner = document.getElementById('signup-spinner');
+      
+      btn.disabled = true;
+      btnText.textContent = 'Signing up...';
+      spinner.classList.remove('hidden');
+      
+      if (signups.length >= 999) {
+        btn.disabled = false;
+        btnText.textContent = 'Join the Waitlist 🚀';
+        spinner.classList.add('hidden');
+        showToast('Waitlist is full! Please try again later.', 'error');
+        return;
+      }
+      
+      const result = await window.dataSdk.create({
+        email: email,
+        university: university,
+        signup_type: signupType,
+        created_at: new Date().toISOString()
+      });
+      
+      btn.disabled = false;
+      btnText.textContent = 'Join the Waitlist 🚀';
+      spinner.classList.add('hidden');
+      
+      if (result.isOk) {
+        document.getElementById('email').value = '';
+        document.getElementById('university').value = '';
+        showToast("You're on the list! Check your email soon.", 'success');
+      } else {
+        showToast('Something went wrong. Please try again.', 'error');
+      }
+    }
+    
+    // ============ SDK INITIALIZATION ============
+    const dataHandler = {
+      onDataChanged(data) {
+        signups = data;
+      }
+    };
+    
+    async function onConfigChange(config) {
+      const heroTitle = document.getElementById('hero-title');
+      const heroSubtitle = document.getElementById('hero-subtitle');
+      const ctaButton = document.getElementById('cta-button');
+      const featuresTitle = document.getElementById('features-title');
+      
+      if (heroTitle) heroTitle.innerHTML = config.hero_title || defaultConfig.hero_title;
+      if (heroSubtitle) heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      if (ctaButton) {
+        const btnSpan = ctaButton.querySelector('span');
+        if (btnSpan) btnSpan.textContent = config.cta_button_text || defaultConfig.cta_button_text;
+      }
+      if (featuresTitle) featuresTitle.innerHTML = config.features_title || defaultConfig.features_title;
+      
+      // Apply colors
+      const bgColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+      const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+      
+      document.body.style.background = bgColor;
+      document.documentElement.style.setProperty('--cream', bgColor);
+      document.documentElement.style.setProperty('--coral', primaryColor);
+      document.documentElement.style.setProperty('--soft-blue', secondaryColor);
+      
+      // Apply font
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseFontStack = 'Arial, sans-serif';
+      document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      
+      // Apply font size scaling
+      const baseSize = config.font_size || defaultConfig.font_size;
+      document.body.style.fontSize = `${baseSize}px`;
+    }
+    
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => { config.background_color = value; window.elementSdk.setConfig({ background_color: value }); }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => { config.surface_color = value; window.elementSdk.setConfig({ surface_color: value }); }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => { config.text_color = value; window.elementSdk.setConfig({ text_color: value }); }
+          },
+          {
+            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => { config.primary_action_color = value; window.elementSdk.setConfig({ primary_action_color: value }); }
+          },
+          {
+            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+            set: (value) => { config.secondary_action_color = value; window.elementSdk.setConfig({ secondary_action_color: value }); }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => { config.font_family = value; window.elementSdk.setConfig({ font_family: value }); }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => { config.font_size = value; window.elementSdk.setConfig({ font_size: value }); }
+        }
+      };
+    }
+    
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["hero_title", config.hero_title || defaultConfig.hero_title],
+        ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+        ["cta_button_text", config.cta_button_text || defaultConfig.cta_button_text],
+        ["features_title", config.features_title || defaultConfig.features_title]
+      ]);
+    }
+    
+    // Initialize SDKs
+    (async function init() {
+      if (window.elementSdk) {
+        window.elementSdk.init({
+          defaultConfig,
+          onConfigChange,
+          mapToCapabilities,
+          mapToEditPanelValues
+        });
+      }
+      
+      if (window.dataSdk) {
+        const result = await window.dataSdk.init(dataHandler);
+        if (!result.isOk) {
+          console.error('Failed to initialize data SDK');
+        }
+      }
+    })();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9d2b39bc15298063',t:'MTc3MTg5NjkxOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
