@@ -1,237 +1,255 @@
-<!doctype html>
-<html lang="en" class="h-full">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RoomieMatch — Find Your Perfect Roommate</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>RoomieMatch | The Elite Campus Vibe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        :root {
+            --coral: #FF7F50;
+            --soft-blue: #A2D2FF;
+            --onyx: #050505;
+        }
 
-    <!-- Tailwind (optional; used for layout utilities in this template) -->
-    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+        body {
+            background-color: var(--onyx);
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+            line-height: 1.4;
+        }
 
-    <!-- Your CSS -->
-    <link rel="stylesheet" href="./styles.css" />
-  </head>
+        .bg-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.9)), 
+                        url('https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=1500&q=80');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
 
-  <body class="h-full">
-    <div id="app-wrapper" class="h-full overflow-auto">
-      <!-- NAV -->
-      <nav class="fixed top-0 left-0 right-0 z-50 bg-black/70 backdrop-blur-lg border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex justify-between items-center h-16 sm:h-20">
-            <a href="#" onclick="showSection('home')" class="flex items-center gap-3">
-              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-                <span class="text-xl sm:text-2xl">🏠</span>
-              </div>
-              <span class="font-display font-bold text-xl sm:text-2xl text-white">RoomieMatch</span>
+        /* STICKY NAVIGATION */
+        nav {
+            padding: 20px 6%;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            top: 0; 
+            width: 100%; 
+            z-index: 1000;
+            backdrop-filter: blur(15px);
+            background: rgba(5, 5, 5, 0.5);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+        .logo span { color: var(--coral); }
+
+        .coming-soon-pill {
+            display: inline-block;
+            padding: 6px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 100px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 8%;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 15vw, 8.5rem);
+            line-height: 0.85;
+            letter-spacing: -3px;
+            margin: 0;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+        footer {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(30px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 80px 8% 40px;
+            text-align: center;
+            color: white; /* Updated to white */
+        }
+
+        .footer-desc { color: #ccc; max-width: 600px; margin: 20px auto; font-size: 0.9rem; }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .footer-section h4 {
+            font-family: 'Syne';
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: var(--coral);
+        }
+
+        .footer-section a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+
+        .footer-section a:hover { opacity: 1; color: var(--coral); }
+
+        .social-icons { display: flex; justify-content: center; gap: 25px; margin: 40px 0; }
+        .icon-link {
+            color: white;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            opacity: 0.7;
+        }
+        .icon-link:hover { opacity: 1; color: var(--coral); }
+
+        .bottom-bar {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            color: #aaa;
+        }
+
+        /* POPUP */
+        .popup-overlay {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.95);
+            display: none; justify-content: center; align-items: center; z-index: 10000; padding: 20px;
+        }
+        .popup-card {
+            background: #0d0e10; border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px; border-radius: 40px; width: 100%; max-width: 400px; text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-overlay"></div>
+
+    <nav>
+        <div class="logo">ROOMIE<span>MATCH.</span></div>
+    </nav>
+
+    <header>
+        <div class="coming-soon-pill">Coming Soon</div>
+        <p style="color: var(--coral); font-weight: 700; letter-spacing: 2px; font-size: 0.75rem; margin-bottom: 10px;">EST. 2026</p>
+        <h1 class="hero-title">FIND YOUR<br>VIBE.</h1>
+        <p style="color: #ccc; margin-top: 30px; max-width: 450px;">"Find your vibe before you share your space." The chic matching network for modern students.</p>
+    </header>
+
+    <footer>
+        <h2 style="font-family: 'Syne'; font-size: 1.8rem; margin-bottom: 10px;">ROOMIEMATCH.</h2>
+        <p class="footer-desc">
+            The first lifestyle-driven roommate matching platform built exclusively for students.
+        </p>
+
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#">Home</a>
+                <a href="#">How It Works</a>
+                <a href="#">Take Quiz</a>
+                <a href="#">Pricing</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Legal & Support</h4>
+                <a href="#">About Us</a>
+                <a href="#">Student Stories</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Support & FAQ</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+
+        <div class="social-icons">
+            <a href="https://www.instagram.com/roomie.matchh/" class="icon-link" target="_blank">
+                <i data-lucide="instagram"></i>
+                <span>Instagram</span>
             </a>
-
-            <div class="hidden md:flex items-center gap-8">
-              <a href="#" onclick="showSection('home')" class="nav-link font-semibold">Home</a>
-              <a href="#" onclick="showSection('how-it-works')" class="nav-link font-semibold">How It Works</a>
-              <a href="#" onclick="showSection('quiz')" class="nav-link font-semibold">Take Quiz</a>
-              <a href="#" onclick="showSection('pricing')" class="nav-link font-semibold">Pricing</a>
-              <a href="#" onclick="showSection('testimonials')" class="nav-link font-semibold">Stories</a>
-              <button onclick="showSection('signup')" class="btn-glass font-semibold px-6 py-3 rounded-full">
-                Get Early Access
-              </button>
-            </div>
-
-            <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg hover:bg-white/5">
-              <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-              <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
+            <a href="#" class="icon-link">
+                <i data-lucide="music-2"></i>
+                <span>TikTok</span>
+            </a>
+            <a href="#" class="icon-link">
+                <i data-lucide="message-circle"></i>
+                <span>WhatsApp Community</span>
+            </a>
         </div>
 
-        <!-- Mobile -->
-        <div id="mobile-menu" class="mobile-menu fixed top-16 right-0 bottom-0 w-72 md:hidden">
-          <div class="p-6 flex flex-col gap-4">
-            <a href="#" onclick="showSection('home'); toggleMobileMenu()" class="font-semibold text-lg py-3 border-b border-white/10">Home</a>
-            <a href="#" onclick="showSection('how-it-works'); toggleMobileMenu()" class="font-semibold text-lg py-3 border-b border-white/10">How It Works</a>
-            <a href="#" onclick="showSection('quiz'); toggleMobileMenu()" class="font-semibold text-lg py-3 border-b border-white/10">Take Quiz</a>
-            <a href="#" onclick="showSection('pricing'); toggleMobileMenu()" class="font-semibold text-lg py-3 border-b border-white/10">Pricing</a>
-            <a href="#" onclick="showSection('testimonials'); toggleMobileMenu()" class="font-semibold text-lg py-3 border-b border-white/10">Stories</a>
-            <button onclick="showSection('signup'); toggleMobileMenu()" class="btn-glass font-semibold px-6 py-4 rounded-full mt-2">
-              Get Early Access
-            </button>
-          </div>
+        <div class="bottom-bar">
+            <p>© 2026 ROOMIEMATCH. ALL RIGHTS RESERVED.</p>
+            <p style="margin-top: 10px; font-weight: 700; color: white;">Made with ❤️ for students</p>
         </div>
-      </nav>
+    </footer>
 
-      <!-- Toast -->
-      <div id="toast-container" class="fixed top-24 right-4 z-50 flex flex-col gap-2"></div>
-
-      <!-- HOME -->
-      <section id="home-section" class="pt-20 sm:pt-24">
-        <div class="relative min-h-[640px] sm:min-h-[720px] flex items-center overflow-hidden">
-          <div class="hero-blob blob-1"></div>
-          <div class="hero-blob blob-2"></div>
-
-          <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 w-full">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-              <div class="text-center lg:text-left">
-                <div class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 shadow-lg mb-6">
-                  <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-                  <span class="text-sm font-semibold text-white/80">Now accepting early signups!</span>
-                </div>
-
-                <h1 id="hero-title" class="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white leading-tight mb-6">
-                  Find Your <span class="gradient-text">Vibe</span> Before You Share Your <span class="gradient-text">Space</span>
-                </h1>
-
-                <p id="hero-subtitle" class="text-lg sm:text-xl text-white/70 mb-8 max-w-xl mx-auto lg:mx-0">
-                  Stop playing roommate roulette. RoomieMatch uses personality science to pair you with compatible roommates who actually match your lifestyle.
-                </p>
-
-                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <button id="cta-button" onclick="showSection('quiz')" class="btn-glass font-bold text-lg px-8 py-4 rounded-full inline-flex items-center justify-center gap-2">
-                    <span>Take the Quiz</span>
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                    </svg>
-                  </button>
-
-                  <button onclick="showSection('how-it-works')" class="btn-glass font-bold text-lg px-8 py-4 rounded-full inline-flex items-center justify-center gap-2 border-white/15">
-                    <span>How It Works</span>
-                  </button>
-                </div>
-
-                <!-- Pill stats -->
-                <div class="mt-10 grid gap-4 max-w-md mx-auto lg:mx-0">
-                  <div class="pill px-6 py-4">
-                    <div class="font-display font-extrabold text-4xl leading-none">94%</div>
-                    <div class="text-sm uppercase tracking-widest text-white/80 mt-2">Match Success Rate</div>
-                  </div>
-                  <div class="pill px-6 py-4">
-                    <div class="font-display font-extrabold text-4xl leading-none">50+</div>
-                    <div class="text-sm uppercase tracking-widest text-white/80 mt-2">Universities</div>
-                  </div>
-                  <div class="pill px-6 py-4">
-                    <div class="font-display font-extrabold text-4xl leading-none">10K+</div>
-                    <div class="text-sm uppercase tracking-widest text-white/80 mt-2">Happy Roommates</div>
-                  </div>
-                  <div class="pill px-6 py-4">
-                    <div class="font-display font-extrabold text-4xl leading-none">4.9★</div>
-                    <div class="text-sm uppercase tracking-widest text-white/80 mt-2">User Rating</div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Right side card -->
-              <div class="hidden lg:block">
-                <div class="card p-8">
-                  <h3 class="font-display font-bold text-2xl mb-2">Your Top Match</h3>
-                  <p class="text-white/70 mb-6">See your best match and connect instantly.</p>
-                  <button onclick="showSection('signup')" class="btn-glass font-bold px-8 py-4 rounded-full">Get Early Access</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- HOW IT WORKS -->
-      <section id="how-it-works-section" class="hidden pt-24 pb-16">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div class="card p-8">
-            <h2 class="font-display font-bold text-3xl mb-4">How It Works</h2>
-            <p class="text-white/70">Take the quiz → verify student → browse matches → connect.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- QUIZ -->
-      <section id="quiz-section" class="hidden pt-24 pb-16">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div class="card overflow-hidden">
-            <div class="p-6 border-b border-white/10 bg-white/5">
-              <div class="flex items-center justify-between mb-4">
-                <h2 class="font-display font-bold text-2xl text-white">Compatibility Quiz</h2>
-                <span id="quiz-step" class="text-white/70 font-semibold">1 of 5</span>
-              </div>
-              <div class="bg-white/10 rounded-full h-3 overflow-hidden">
-                <div id="quiz-progress" class="h-full rounded-full quiz-progress" style="width: 20%"></div>
-              </div>
-            </div>
-
-            <div id="quiz-content" class="p-6 sm:p-8"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- PRICING -->
-      <section id="pricing-section" class="hidden pt-24 pb-16">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div class="card p-8">
-            <h2 class="font-display font-bold text-3xl mb-4">Pricing</h2>
-            <p class="text-white/70">Basic, Premium, Lifetime</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- TESTIMONIALS -->
-      <section id="testimonials-section" class="hidden pt-24 pb-16">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div class="card p-8">
-            <h2 class="font-display font-bold text-3xl mb-4">Stories</h2>
-            <p class="text-white/70">Real students, real matches.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- SIGNUP -->
-      <section id="signup-section" class="hidden pt-24 pb-16">
-        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div class="card overflow-hidden">
-            <div class="p-8 text-center bg-white/5 border-b border-white/10">
-              <h2 class="font-display font-bold text-3xl mb-2">Get Early Access</h2>
-              <p class="text-white/70">Join the waitlist.</p>
-            </div>
-
-            <form class="p-8" onsubmit="return false;">
-              <div class="space-y-6">
-                <div>
-                  <label class="block text-sm font-semibold text-white/80 mb-2">University Email</label>
-                  <input id="email" type="email" class="input-field w-full px-5 py-4 rounded-xl text-lg" placeholder="you@university.edu" required />
-                </div>
-
-                <div>
-                  <label class="block text-sm font-semibold text-white/80 mb-2">University Name</label>
-                  <input id="university" type="text" class="input-field w-full px-5 py-4 rounded-xl text-lg" placeholder="e.g., UCLA" required />
-                </div>
-
-                <button id="signup-btn" onclick="handleSignup(event)" class="w-full btn-glass font-bold text-lg py-5 rounded-xl flex items-center justify-center gap-3">
-                  <span id="signup-btn-text">Join the Waitlist 🚀</span>
-                  <span id="signup-spinner" class="loading-spinner hidden"></span>
-                </button>
-              </div>
+    <div id="statusPopup" class="popup-overlay">
+        <div class="popup-card">
+            <h2 style="color: var(--coral); font-family: 'Syne'; margin-top: 0;">ELITE STATUS 💎</h2>
+            <p style="color: #888; font-size: 0.85rem;">Join the pre-launch waitlist for <strong>Lifetime Premium</strong> access.</p>
+            <form id="claimForm">
+                <input type="email" placeholder="University Email" required style="width:100%; padding:18px; background:#1a1b1e; border:1px solid #333; border-radius:14px; color:white; margin:15px 0; outline:none;">
+                <button type="submit" style="width:100%; padding:18px; background:white; border:none; border-radius:14px; font-weight:800; cursor:pointer;">SECURE MY STATUS</button>
             </form>
-          </div>
+            <button onclick="closePopup()" style="background:none; border:none; color:#444; text-decoration:underline; cursor:pointer; margin-top:15px;">Maybe later</button>
         </div>
-      </section>
-
-      <!-- FOOTER -->
-      <footer class="border-t border-white/10 py-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white/60 text-sm flex justify-between">
-          <span>© 2024 RoomieMatch</span>
-          <span>Made with ❤️</span>
-        </div>
-      </footer>
     </div>
 
-    <!-- Your JS -->
-    <script src="./app.js"></script>
-  </body>
+    <script>
+        lucide.createIcons();
+
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const popup = document.getElementById('statusPopup');
+                if (popup) popup.style.display = 'flex';
+            }, 60000); 
+        });
+
+        function closePopup() {
+            document.getElementById('statusPopup').style.display = 'none';
+        }
+    </script>
+</body>
 </html>
+
+
+CSS   /* --- 1. CORE BRAND COLORS & FONTS --- */
+:root {
+    --coral: #FF8C00; /* Your Brand Orange */
+    --onyx: #050505;
