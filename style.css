@@ -11,75 +11,60 @@ body {
     overflow-x: hidden;
 }
 
-/* 1. FIX THE HEADER SPACING */
+/* 1. HEADER LAYOUT FIX */
 header {
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 60px; /* Gives space for the sticky logo */
+    padding-top: 60px; 
     text-align: center;
 }
 
-/* 2. THE BUTTON CONTAINER (Keeps them side-by-side) */
+/* 2. BUTTON SPACING (Placed right after subtitle) */
 .hero-btns {
     display: flex;
-    gap: 15px;
+    gap: 40px; /* Provides the distance you requested */
     margin-top: 35px;
     justify-content: center;
     animation: fadeInUp 1s ease 1.2s forwards;
     opacity: 0;
 }
 
-/* 3. TAKE QUIZ - Primary Action (Forces White/Coral) */
-.btn-primary {
-    background-color: var(--coral) !important;
-    color: white !important; /* Kills the blue font */
-    padding: 16px 32px;
-    border-radius: 100px;
+/* 3. UI PILL BUTTONS (Matches Coming Soon Badge) */
+.ui-pill {
+    display: inline-block;
+    padding: 8px 22px; 
+    border: 1px solid var(--coral);
+    border-radius: 100px; /* Precise oval shape */
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
     text-decoration: none !important;
-    font-weight: 800;
-    font-size: 0.8rem;
+    background: var(--coral);
+    color: white !important; /* Fixes the blue font issue */
     font-family: 'Plus Jakarta Sans', sans-serif;
-    letter-spacing: 1px;
-    transition: 0.3s;
-    border: 2px solid var(--coral) !important;
+    transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 4. HOW IT WORKS - Secondary Action (White Border) */
-.btn-secondary {
-    background-color: transparent !important;
+/* 4. SECONDARY BUTTON (Sheer/Glass Look) */
+.ui-pill.secondary {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
     color: white !important;
-    padding: 16px 32px;
-    border-radius: 100px;
-    text-decoration: none !important;
-    font-weight: 700;
-    font-size: 0.8rem;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    letter-spacing: 1px;
-    border: 2px solid rgba(255, 255, 255, 0.3) !important;
-    transition: 0.3s;
 }
 
 /* 5. HOVER EFFECTS */
-.btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(255, 127, 80, 0.4);
+.ui-pill:hover {
+    transform: translateY(-2px);
     background-color: white !important;
     color: var(--coral) !important;
-}
-
-.btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.05) !important;
     border-color: white !important;
 }
 
-/* MOBILE FIX: Stacks buttons vertically on small screens */
-@media (max-width: 480px) {
-    .hero-btns { 
-        flex-direction: column; 
-        width: 80%; 
-        gap: 12px;
-    }
+.ui-pill.secondary:hover {
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-color: white !important;
 }
